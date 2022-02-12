@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "server:run": "nodemon ./server/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "server:test": "jest --config ./jest.config.js"
   },
   "dependencies": {
     "dotenv": "^16.0.0",
@@ -15,5 +15,8 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
     "winston": "^3.5.1"
+  },
+  "devDependencies": {
+    "jest": "^27.5.1"
   }
 }
