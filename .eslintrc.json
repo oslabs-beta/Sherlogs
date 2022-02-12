@@ -1,0 +1,40 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true,
+        "node": true
+    },
+    "extends": [
+        "plugin:react/recommended",
+        "prettier"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "quotes": ["warn", "single"],
+        "prefer-const": "warn",
+        "no-unused-vars": ["off", { "vars": "local" }],
+        "indent": ["warn", 2],
+        "semi": ["warn", "always"],
+        "react/prefer-stateless-function": "off",
+        "react/prop-types": "off",
+        "react/jsx-key": "warn",
+        "space-infix-ops": 2,
+        "no-empty": 2,
+        "no-empty-function": 2,
+        "no-console": "off"
+    },
+    "settings": {
+        "react": {
+            "version": "detetct"
+        }
+    }
+}
