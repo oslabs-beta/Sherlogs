@@ -5,14 +5,7 @@
   "main": "index.js",
   "scripts": {
     "server:run": "nodemon ./server/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "test:jest": "jest"
-  },
-  "jest": {
-    "verbose": true,
-    "testPathIgnorePatterns": [
-      "/node_modules/"
-    ]
+    "server:test": "jest --config ./jest.config.js"
   },
   "dependencies": {
     "dotenv": "^16.0.0",
