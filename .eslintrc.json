@@ -24,7 +24,7 @@
         "prefer-const": "warn",
         "no-unused-vars": ["off", { "vars": "local" }],
         "indent": ["warn", 2],
-        "semi": ["warn", "always"],
+        "semi": [2, "always"],
         "react/prefer-stateless-function": "off",
         "react/prop-types": "off",
         "react/jsx-key": "warn",
