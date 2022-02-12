@@ -4,7 +4,7 @@
   "description": "open source app for managing logs",
   "main": "index.js",
   "scripts": {
-    "server:run": "node ./server/index.js",
+    "server:run": "nodemon ./server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
