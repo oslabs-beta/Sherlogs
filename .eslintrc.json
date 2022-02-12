@@ -6,7 +6,7 @@
     },
     "extends": [
         "plugin:react/recommended",
-        "prettier"
+        "plugin:prettier/recommended"
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -16,9 +16,11 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "prettier"
     ],
     "rules": {
+        "prettier/prettier": "warn",
         "quotes": ["warn", "single"],
         "prefer-const": "warn",
         "no-unused-vars": ["off", { "vars": "local" }],
@@ -27,10 +29,11 @@
         "react/prefer-stateless-function": "off",
         "react/prop-types": "off",
         "react/jsx-key": "warn",
-        "space-infix-ops": 2,
-        "no-empty": 2,
-        "no-empty-function": 2,
-        "no-console": "off"
+        "space-infix-ops": "warn",
+        "no-empty": "warn",
+        "no-empty-function": "warn",
+        "no-console": "off",
+        "import/no-unresolved": false
     },
     "settings": {
         "react": {
