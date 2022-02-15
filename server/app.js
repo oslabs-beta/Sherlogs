@@ -2,6 +2,8 @@ const express = require('express');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const path = require('path');
+const passport = require('passport');
+require('./passport-config')(passport);
 
 const errorHandler = require(path.resolve(__dirname, './utils/errorHandling'));
 const { stream } = require('./utils/logger');
@@ -15,6 +17,8 @@ async function createApp(config) {
   app.use(helmet());
   app.use(morgan('combined', { stream }));
   //   app.use('/apiv1', apiV1Router); // TODO: Create routing and controllers when we have the model
+
+
 
   app.use('*', (req, res) => {
     res.status(404).send('Not Found');
