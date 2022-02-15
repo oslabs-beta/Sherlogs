@@ -3,7 +3,7 @@ const createApp = require('./app');
 
 const port = process.env.PORT;
 const config = {
-  //mongoUrl: // TODO: Create the db and put the env variable with the url here
+  mongoUrl: process.env.MONGODB_URL
 };
 
 createApp(config).then((app) => {
