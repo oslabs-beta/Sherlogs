@@ -3,19 +3,19 @@ const Schema = mongoose.Schema;
 const bcrypt = require('bcrypt');
 
 const userSchema = new Schema({
-    username: {
-        type: String,
-        required: true,
-        maxLength: 25,
-        unique: true
-    },
-    password: {
-        type: String,
-        required: true,
-        minLength: 8,
-        maxLength: 16
-    }
-})
+  username: {
+    type: String,
+    required: true,
+    maxLength: 25,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+    minLength: 8,
+    maxLength: 16,
+  },
+});
 
 //validation function (password requirements)
 //refactor to throw an error instead of returning 

@@ -3,6 +3,7 @@
 
 const jestConfig = {
   verbose: true,
+  forceExit: true,
   testPathIgnorePatterns: ['/node_modules/'],
 };
 
