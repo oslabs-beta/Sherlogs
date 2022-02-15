@@ -5,11 +5,11 @@ const path = require('path');
 
 const errorHandler = require(path.resolve(__dirname, './utils/errorHandling'));
 const { stream } = require('./utils/logger');
-// const connectDB = require('./database');
+const connectDB = require('./database');
 // const apiV1Router = require('./routes/v1.routes');
 
 async function createApp(config) {
-  //   await connectDB(config.mongoUrl); // TODO: Uncomment when is setted
+  await connectDB(config.mongoUrl);
   const app = express();
   app.use(express.json());
   app.use(helmet());
