@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "server:run": "nodemon ./server/index.js",
-    "server:test": "jest --config ./jest.config.js"
+    "server:test:run": "jest --config ./jest.config.js",
+    "server:test:watch": "jest --watchAll --verbose",
+    "format:lint": "npx eslint --ext .jsx --ext .js . --fix",
+    "format:pretty": "prettier --write '**/*.{jsx,js,css,html}'"
   },
   "dependencies": {
     "dotenv": "^16.0.0",
@@ -17,6 +20,20 @@
     "winston": "^3.5.1"
   },
   "devDependencies": {
-    "jest": "^27.5.1"
+    "eslint": "^8.9.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-react": "^7.28.0",
+    "jest": "^27.5.1",
+    "prettier": "^2.5.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oslabs-beta/Sherlogs"
+  },
+  "author": "Panda-Whale",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oslabs-beta/Sherlogs/issues"
   }
 }

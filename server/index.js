@@ -3,7 +3,7 @@ const createApp = require('./app');
 
 const port = process.env.PORT;
 const config = {
-  mongoUrl: process.env.MONGODB_URL
+  mongoUrl: process.env.MONGODB_URL,
 };
 
 createApp(config).then((app) => {
