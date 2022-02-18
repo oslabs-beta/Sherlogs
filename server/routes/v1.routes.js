@@ -5,10 +5,12 @@ const logController = require('../controllers/logController');
 
 Router.post('/log/store', logController.storeLog, (req, res, next) => {
   const { logStored } = res.locals;
-  return res
-    .status(201)
-    .json({ logStored })
-    .send('successfully store log into the database');
+
+  return res.status(201).json({
+    status: true,
+    log: logStored,
+    message: 'storeLog middleware: Successfully stored log into DB',
+  });
 });
 
 module.exports = Router;

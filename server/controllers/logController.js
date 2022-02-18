@@ -14,14 +14,14 @@ logController.storeLog = async (req, res, next) => {
     let data = await Logs.create({
       log: log,
     });
-    if (data.__v === 0) {
+
+    if (data) {
       res.locals.logStored = data;
+
       return next();
-    } else {
-      throw new Error(`Error from storeLog. Status Code from db: ${data.__v}`);
     }
   } catch (err) {
-    console.log(`Error from storeLog. Message: ${err}`);
+    console.log(`error from storeLog. Message: ${err}`);
   }
 };
 
