@@ -18,7 +18,12 @@ router.post('/login', async (req, res, next) => {
   passport.authenticate('login', async (err, user, info) => {
     try {
       if (err || !user) {
-        const error = new Error('An error occurred.');
+        // console.log(err)
+        const error = {
+          log: 'incorrect login',
+          status: 400,
+          message: { err: 'An error occurred' },
+        };
 
         return next(error);
       }

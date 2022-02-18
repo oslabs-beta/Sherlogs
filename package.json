@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "server:run": "nodemon ./server/index.js",
-    "server:test:run": "jest --config ./jest.config.js",
+    "server:test:run": "jest --config ./jest.config.js --runInBand --detectOpenHandles",
     "server:test:watch": "jest --watchAll --verbose",
     "format:lint": "npx eslint --ext .jsx --ext .js . --fix",
     "format:pretty": "prettier --write '**/*.{jsx,js,css,html}'"

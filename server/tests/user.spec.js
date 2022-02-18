@@ -7,19 +7,24 @@ const User = require('../models/user')
 let app;
 
 // This will create an new instance of "MongoMemoryServer" and automatically start it
-    const mongod = await MongoMemoryServer.MongoMemoryServer.create();
+
+const memoryServer = async () => {
+  return await MongoMemoryServer.MongoMemoryServer.create();
+};
+
+const mongod = memoryServer();
 
 //start server before any tests run
 beforeAll(async () => {
-    const uri = await mongod.getUri();
-    const config = { mongoUrl: uri };
-    app = await createApp(config);
+  const uri = (await mongod).getUri();
+  const config = { mongoUrl: uri };
+  app = await createApp(config);
 });
-  
-//stop server after tests run
-// afterAll(async () => {
-//   await mongod.stop();
-// });
+
+// stop server after tests run
+afterAll(async () => {
+  await (await mongod).stop();
+});
 
 describe('POST /signup/', () => {
     describe('when a post request is made to /signup', () => {
@@ -40,15 +45,6 @@ describe('POST /signup/', () => {
 
 describe('POST /login/', () => {
   describe('when a post request is made to /login', () => {
-    // it('should return an error if the username is empty', async () => {
-    //   const data = {
-    //     password: 'password',
-    //   }
-
-    //   const response = await request(app)
-    //   .post('/login/')
-    //   .send(data);
-    // })
 
     it('should respond with a 200 status code', async () => {
       const data = {
@@ -75,6 +71,50 @@ describe('POST /login/', () => {
         expect.stringContaining('json')
       );
     });
-    //should return a jwt
+
+    it('should return a token', async () => {
+      const data = {
+        username: 'user1',
+        password: 'password',
+      }
+      const response = await request(app)
+        .post('/login/')
+        .send(data);
+
+      expect(response.body.token).toBeDefined();
+    });
+
+    it('should return an error if no username is provided', async () => {
+      const data = {
+        password: 'password',
+      }
+      const response = await request(app)
+        .post('/login/')
+        .send(data);
+
+      expect(response.statusCode).toBe(400)
+    })
+
+    // it('should return an error if no password is provided', async () => {
+    //   const data = {
+    //     username: 'user1',
+    //   }
+    //   const response = await request(app)
+    //     .post('/login/')
+    //     .send(data);
+    //   expect(response).toThrow();
+    // })
+  
+
+    // it('should return an error if login username is incorrect', async () => {
+    //   const data = {
+    //     username: 'wrongUser',
+    //     password: 'password'
+    //   }
+    //   const response = await request(app)
+    //     .post('/login/')
+    //     .send(data);
+    //   expect(response).toThrow();
+    // })
   })
 })
