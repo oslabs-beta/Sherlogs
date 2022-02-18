@@ -2,27 +2,26 @@ const Logs = require('../models/logs');
 
 const logController = {};
 
+//store a single log
 logController.storeLog = async (req, res, next) => {
   try {
+    console.log('storeLog');
     const { log } = req.body;
+    // TODO: able to store more than one log
     if (!log) {
       console.log('missing log');
     }
     let data = await Logs.create({
       log: log,
     });
-    console.log(data);
-    res.locals.logId = data._doc._id;
-    return next();
+    if (data.__v === 0) {
+      res.locals.logStored = data;
+      return next();
+    } else {
+      throw new Error(`Error from storeLog. Status Code from db: ${data.__v}`);
+    }
   } catch (err) {
-    console.log(`error from storeLog. Message: ${err}`);
-  }
-};
-
-logController.storeLogs = async (req, res, next) => {
-  try {
-  } catch (err) {
-    console.log(`error from storeLogs middleware. Message ${err}`);
+    console.log(`Error from storeLog. Message: ${err}`);
   }
 };
 
