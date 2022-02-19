@@ -3,6 +3,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const JWTstrategy = require('passport-jwt').Strategy;
 const ExtractJWT = require('passport-jwt').ExtractJwt;
+require('dotenv').config();
 
 passport.use(
   'signup',
@@ -55,7 +56,7 @@ passport.use(
 passport.use(
   new JWTstrategy(
     {
-      secretOrKey: 'TOP_SECRET',
+      secretOrKey: process.env.SECRET,
       jwtFromRequest: ExtractJWT.fromUrlQueryParameter('secret_token'),
     },
     async (token, done) => {
