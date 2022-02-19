@@ -7,22 +7,18 @@ const User = require('../models/user')
 
 let app;
 
-// This will create an new instance of "MongoMemoryServer" and automatically start it
-
 const memoryServer = async () => {
   return await MongoMemoryServer.MongoMemoryServer.create();
 };
 
 const mongod = memoryServer();
 
-//start server before any tests run
 beforeAll(async () => {
   const uri = (await mongod).getUri();
   const config = { mongoUrl: uri };
   app = await createApp(config);
 });
 
-// stop server after tests run
 afterAll(async () => {
   await (await mongod).stop();
 });
@@ -51,6 +47,29 @@ describe('POST /signup/', () => {
           .send(data);
 
         expect(response.body.log).toBe('Invalid username or password')
+      });
+
+      it('should return an error if the password field is empty', async () => {
+        const data = {
+            username: 'user1',
+        }
+        const response = await request(app)
+          .post(`${baseUrl}${auth}/signup/`)
+          .send(data);
+
+        expect(response.body.log).toBe('Invalid username or password')
+      });
+
+      it('should return an error if the username already exists in the database', async () => {
+        const data = {
+            username: 'user1',
+            password: 'password'
+        }
+        const response = await request(app)
+          .post(`${baseUrl}${auth}/signup/`)
+          .send(data);
+
+        expect(response.body.log).toBe('Username already exists')
       });
     });
 });
