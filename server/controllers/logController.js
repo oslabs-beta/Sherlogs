@@ -1,4 +1,6 @@
 const Logs = require('../models/logs');
+const path = require('path');
+const errorHandler = require(path.resolve(__dirname, '../utils/errorHandling'));
 
 const logController = {};
 
@@ -24,4 +26,18 @@ logController.storeLog = async (req, res, next) => {
   }
 };
 
+logController.getAllLogs = async (req, res, next) => {
+  try {
+    let data = await Logs.find();
+    console.log(data);
+    if (data) {
+      res.locals.allLogs = data;
+      return next();
+    }
+  } catch (err) {
+    console.error(`error from getAllLogs middleware. Message: ${err}`);
+    res.status(500);
+    return errorHandler(err);
+  }
+};
 module.exports = logController;
