@@ -7,11 +7,10 @@ logController.storeLog = async (req, res, next) => {
   try {
     console.log('storeLog');
     const { log } = req.body;
-    // TODO: able to store more than one log
     if (!log) {
-      console.log('missing log');
+      throw new Error('Error at find log inside req.body');
     }
-    let data = await Logs.create({
+    const data = await Logs.create({
       log: log,
     });
 
