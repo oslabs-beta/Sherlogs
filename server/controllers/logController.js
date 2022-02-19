@@ -1,3 +1,4 @@
+const User = require('../models/logs');
 const Logs = require('../models/logs');
 const path = require('path');
 const errorHandler = require(path.resolve(__dirname, '../utils/errorHandling'));
@@ -28,16 +29,29 @@ logController.storeLog = async (req, res, next) => {
 
 logController.getAllLogs = async (req, res, next) => {
   try {
-    let data = await Logs.find();
-    console.log(data);
-    if (data) {
-      res.locals.allLogs = data;
-      return next();
+    //TODO: refactor below codes for one specific user log
+    // const { user } = req.body;
+    // if (!user) {
+    //   const userError = {
+    //     log: 'getAllLogs middleware: no user found',
+    //     status: 401,
+    //     message: { err: 'An error occurred' },
+    //   };
+    //   return next(userError);
+    // }
+    const data = await Logs.find({});
+    if (!data) {
+      const dataError = {
+        log: 'getAllLogs middleware: Error from db when query for log',
+        status: 406,
+        message: { err: 'An error occurred' },
+      };
+      return next(dataError);
     }
+    res.locals.allLogs = data;
+    return next();
   } catch (err) {
-    console.error(`error from getAllLogs middleware. Message: ${err}`);
-    res.status(500);
-    return errorHandler(err);
+    return next(err);
   }
 };
 module.exports = logController;
