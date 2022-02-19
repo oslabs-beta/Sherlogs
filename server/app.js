@@ -29,9 +29,7 @@ async function createApp(config) {
     res.status(404).send('Not Found');
   });
 
-  app.use((err, req, res, next) => {
-    return errorHandler(err);
-  });
+  app.use(errorHandler);
 
   return app;
 }

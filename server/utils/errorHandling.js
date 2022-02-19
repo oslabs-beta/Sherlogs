@@ -7,8 +7,8 @@ const defaultError = {
 
 const errorHandler = (err, req, res, next) => {
   console.log(err);
-  const errorObj = { ...defaultError, err };
-  res.json(defaultError);
+  const errorObj = { ...defaultError, ...err};
+  res.json(errorObj);
 };
 
 module.exports = errorHandler;

@@ -2,6 +2,7 @@ const createApp = require('../app');
 const request = require('supertest');
 const MongoMemoryServer = require('mongodb-memory-server');
 
+const { baseUrl, auth } = require('../utils/constants')
 const User = require('../models/user')
 
 let app;
@@ -34,7 +35,7 @@ describe('POST /signup/', () => {
             password: 'password',
         }
         const response = await request(app)
-          .post('/signup/')
+          .post(`${baseUrl}${auth}/signup/`)
           .send(data);
 
         expect(response.statusCode).toBe(200)
@@ -52,7 +53,7 @@ describe('POST /login/', () => {
         password: 'password',
       }
       const response = await request(app)
-        .post('/login/')
+        .post(`${baseUrl}${auth}/login/`)
         .send(data);
 
       expect(response.statusCode).toBe(200)
@@ -64,7 +65,7 @@ describe('POST /login/', () => {
         password: 'password',
       }
       const response = await request(app)
-        .post('/login/')
+        .post(`${baseUrl}${auth}/login/`)
         .send(data);
 
       expect(response.headers['content-type']).toEqual(
@@ -78,7 +79,7 @@ describe('POST /login/', () => {
         password: 'password',
       }
       const response = await request(app)
-        .post('/login/')
+        .post(`${baseUrl}${auth}/login/`)
         .send(data);
 
       expect(response.body.token).toBeDefined();
@@ -89,10 +90,11 @@ describe('POST /login/', () => {
         password: 'password',
       }
       const response = await request(app)
-        .post('/login/')
+        .post(`${baseUrl}${auth}/login/`)
         .send(data);
 
-      expect(response.statusCode).toBe(400)
+      //expect(response.body.message.err).toBe('An error occurred');
+      expect(response.body.log).toBe('Missing username or password')
     })
 
     // it('should return an error if no password is provided', async () => {

@@ -17,18 +17,6 @@ const userSchema = new Schema({
   },
 });
 
-//validation function (password requirements)
-//refactor to throw an error instead of returning
-// userSchema.methods.passwordIsCorrectLength = async function(password){
-//   const user = this;
-//   return password.length >= 8 && password.length <= 16
-// }
-
-// userSchema.methods.usernameIsCorrectLength = async function(username){
-//     const user = this;
-//     return username.length <= 25
-// }
-
 userSchema.methods.isValidPassword = async function (password) {
   const user = this;
   const compare = await bcrypt.compare(password, user.password);
