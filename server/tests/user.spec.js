@@ -41,6 +41,17 @@ describe('POST /signup/', () => {
         expect(response.statusCode).toBe(200)
         expect(response.body.message).toEqual('Signup successful')
       });
+
+      it('should return an error if the username field is empty', async () => {
+        const data = {
+            password: 'password',
+        }
+        const response = await request(app)
+          .post(`${baseUrl}${auth}/signup/`)
+          .send(data);
+
+        expect(response.body.log).toBe('Invalid username or password')
+      });
     });
 });
 
@@ -93,30 +104,42 @@ describe('POST /login/', () => {
         .post(`${baseUrl}${auth}/login/`)
         .send(data);
 
-      //expect(response.body.message.err).toBe('An error occurred');
       expect(response.body.log).toBe('Missing username or password')
     })
 
-    // it('should return an error if no password is provided', async () => {
-    //   const data = {
-    //     username: 'user1',
-    //   }
-    //   const response = await request(app)
-    //     .post('/login/')
-    //     .send(data);
-    //   expect(response).toThrow();
-    // })
-  
+    it('should return an error if no password is provided', async () => {
+      const data = {
+        username: 'user1',
+      }
+      const response = await request(app)
+        .post(`${baseUrl}${auth}/login/`)
+        .send(data);
 
-    // it('should return an error if login username is incorrect', async () => {
-    //   const data = {
-    //     username: 'wrongUser',
-    //     password: 'password'
-    //   }
-    //   const response = await request(app)
-    //     .post('/login/')
-    //     .send(data);
-    //   expect(response).toThrow();
-    // })
+      expect(response.body.log).toBe('Missing username or password')
+    })
+  
+    it('should return an error if login username is incorrect', async () => {
+      const data = {
+        username: 'wrongUser',
+        password: 'password'
+      }
+      const response = await request(app)
+        .post(`${baseUrl}${auth}/login/`)
+        .send(data);
+      
+        expect(response.body.log).toBe('Username does not exist')
+    })
+
+    it('should return an error if password is incorrect', async () => {
+      const data = {
+        username: 'user1',
+        password: 'wrongpassword'
+      }
+      const response = await request(app)
+        .post(`${baseUrl}${auth}/login/`)
+        .send(data);
+      
+        expect(response.body.log).toBe('Password is incorrect')
+    })
   })
 })

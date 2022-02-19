@@ -19,9 +19,8 @@ authRouter.post('/login', checkLoginInputs, async (req, res, next) => {
   passport.authenticate('login', async (err, user, info) => {
     try {
       if (err || !user) {
-        // console.log(err)
         const error = {
-          log: 'incorrect login',
+          log: 'Password is incorrect',
           status: 400,
           message: { err: 'An error occurred' },
         };

@@ -35,22 +35,34 @@ userController.checkSignupInputs = async (req, res, next) => {
 };
 
 userController.checkLoginInputs = async (req, res, next) => {
-  const {username, password} = req.body;
+  try{
+    const {username, password} = req.body;
+      
+    if(!username || !password){
+      const error = {
+        log: 'Missing username or password',
+        status: 400,
+        message: { err: 'An error occurred in userController.checkLoginInputs' },
+      };
     
-  if(
-    username &&
-          password
-  ){
+      return next(error);
+    }
+
+    const userFromDb = await user.findOne({username: username});
+
+    if(!userFromDb){
+      const error = {
+        log: 'Username does not exist',
+        status: 400,
+        message: { err: 'An error occurred in userController.checkSignupInputs' },
+      };
+      return next(error);
+    }
+    
     return next();
-  }
-  else{
-    const error = {
-      log: 'Missing username or password',
-      status: 400,
-      message: { err: 'An error occurred in userController.checkLoginInputs' },
-    };
-  
-    return next(error);
+
+  }catch(err){
+    return next(err);
   }
 };
 
