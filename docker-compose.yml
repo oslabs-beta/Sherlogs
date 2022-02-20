@@ -1,0 +1,31 @@
+version: '3.9'
+services:
+  #mongo db service
+  mongodb:
+    container_name: db_container
+    image: mongo:latest
+    env_file:
+      - ./.env
+    restart: always
+    ports:
+      - $MONGODB_DOCKER_PORT:$MONGODB_DOCKER_PORT
+    volumes:
+      - ./mongodb:/data/db
+
+  #node app service
+  app:
+    container_name: node_container
+    build: .
+    env_file:
+      - ./.env
+    ports: 
+      - $NODE_LOCAL_PORT:$NODE_LOCAL_PORT
+    volumes:
+      - .:/user/src/app
+    stdin_open: true
+    tty: true
+    depends_on:
+      - mongodb
+    
+volumes:
+  mongodb:
