@@ -1,14 +1,14 @@
 const express = require('express');
-const router = express.Router();
+const Router = express.Router();
 const authRouter = require('./auth.routes');
 
-router.use('/auth', authRouter);
+Router.use('/auth', authRouter);
 
 //This code handles a GET request for profile. 
 //It returns a "You made it to the secure route" message. 
 //It also returns information about the user and token.
 //The goal will be so that only users with a verified token will be presented with this response.
-router.get(
+Router.get(
   '/profile',
   (req, res, next) => {
     res.json({
@@ -18,6 +18,20 @@ router.get(
     });
   }
 );
-  
-module.exports = router;
-  
+
+const logController = require('../controllers/logController');
+
+Router.post('/log/store', logController.storeLog, (req, res, next) => {
+  const { logStored } = res.locals;
+
+  return res
+    .status(201)
+    .json({
+      status: true,
+      log: logStored,
+      message: 'Successfully stored log into DB',
+    })
+    .render('Successfully stored log into DB');
+});
+
+module.exports = Router;
