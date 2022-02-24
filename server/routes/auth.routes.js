@@ -21,7 +21,7 @@ authRouter.post('/login', checkLoginInputs, async (req, res, next) => {
       if (err || !user) {
         const error = {
           log: 'Password is incorrect',
-          status: 400,
+          status: 403,
           message: { err: 'An error occurred' },
         };
     

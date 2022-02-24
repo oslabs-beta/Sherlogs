@@ -9,7 +9,7 @@ userController.checkSignupInputs = async (req, res, next) => {
     if(!username || username.length > 25 || !password || password.length < 8 || password.length > 16){
       const error = {
         log: 'Invalid username or password',
-        status: 400,
+        status: 403,
         message: { err: 'An error occurred in userController.checkSignupInputs' },
       };
         
@@ -20,8 +20,8 @@ userController.checkSignupInputs = async (req, res, next) => {
 
     if(userFromDb?.username === username){
       const error = {
-        log: 'Username already exists',
-        status: 400,
+        log: 'Invalid username or password',
+        status: 409,
         message: { err: 'An error occurred in userController.checkSignupInputs' },
       };
       return next(error);

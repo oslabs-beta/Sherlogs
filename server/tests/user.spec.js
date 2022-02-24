@@ -69,7 +69,7 @@ describe('POST /signup/', () => {
           .post(`${baseUrl}${auth}/signup/`)
           .send(data);
 
-        expect(response.body.log).toBe('Username already exists')
+        expect(response.body.log).toBe('Invalid username or password')
       });
     });
 });
