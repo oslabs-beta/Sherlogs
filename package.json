@@ -8,7 +8,10 @@
     "server:test:run": "jest --config ./jest.config.js",
     "server:test:watch": "jest --watchAll --verbose",
     "format:lint": "npx eslint --ext .jsx --ext .js . --fix",
-    "format:pretty": "prettier --write '**/*.{jsx,js,css,html}'"
+    "format:pretty": "prettier --write '**/*.{jsx,js,css,html}'",
+    "dev": "vite",
+    "preview": "vite preview",
+    "debug": "node --inspect-brk ../../vite/bin/vite"
   },
   "dependencies": {
     "dotenv": "^16.0.0",
@@ -17,16 +20,25 @@
     "mongoose": "^6.2.1",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router": "^6.2.1",
+    "react-router-dom": "^6.2.1",
+    "vite": "^2.8.4",
     "winston": "^3.5.1"
   },
   "devDependencies": {
+    "@vitejs/plugin-react": "^1.2.0",
+    "compression": "^1.7.4",
+    "cross-env": "^7.0.3",
     "eslint": "^8.9.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-react": "^7.28.0",
     "husky": "^7.0.4",
     "jest": "^27.5.1",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "serve-static": "^1.14.2"
   },
   "repository": {
     "type": "git",
