@@ -9,8 +9,9 @@
     "server:test:watch": "jest --watchAll --verbose",
     "format:lint": "npx eslint --ext .jsx --ext .js . --fix",
     "format:pretty": "prettier --write '**/*.{jsx,js,css,html}'",
-    "dev": "vite",
-    "preview": "vite preview",
+    "app:dev": "vite",
+    "app:build": "vite build",
+    "app:preview": "vite preview",
     "debug": "node --inspect-brk ../../vite/bin/vite"
   },
   "dependencies": {
@@ -22,15 +23,12 @@
     "nodemon": "^2.0.15",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-router": "^6.2.1",
     "react-router-dom": "^6.2.1",
-    "vite": "^2.8.4",
     "winston": "^3.5.1"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^1.2.0",
-    "compression": "^1.7.4",
-    "cross-env": "^7.0.3",
+    "vite": "^2.8.0",
     "eslint": "^8.9.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.4",
