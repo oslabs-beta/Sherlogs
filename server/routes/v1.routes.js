@@ -30,8 +30,8 @@ Router.post('/log/store', logController.storeLog, (req, res, next) => {
       status: true,
       log: logStored,
       message: 'Successfully stored log into DB',
-    })
-    .render('Successfully stored log into DB');
+    });
+    // .render('Successfully stored log into DB');
 });
 
 module.exports = Router;
