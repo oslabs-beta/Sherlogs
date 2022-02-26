@@ -40,6 +40,7 @@ function LogList() {
       <Searchbar setQuery={setQuery}/>
       <div className='w-11/12 border-2'>
         {logList}
+        {logList.length === 0 && <p>No results found</p>}
       </div>
     </div>
   );
