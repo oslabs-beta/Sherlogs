@@ -1,6 +1,6 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-npm run server:test:run
+# npm run server:test:run
 npm run format:lint
 npm run format:pretty
