@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Log from './Log.jsx';
+import Searchbar from './Searchbar.jsx';
 
 function LogList() {
   const [logs, setLogs] = useState([]);
+  const [query, setQuery] = useState('');
 
   const getAllLogs = async () => {
     try{
@@ -11,7 +13,7 @@ function LogList() {
       const data = response.data;
       console.log(response.data.all);
       if(data.status){
-        setLogs(data.all);
+        setLogs(data.all.reverse());
       }
     }
     catch(err){
@@ -21,11 +23,24 @@ function LogList() {
   
   useEffect(getAllLogs, []);
 
-  const logList = logs.map(log => <Log key={log._id} log={log}/>);
+  const filtered = logs.filter(log => {
+    if(query === ''){
+      return log;
+    }
+    else if(log.message.toLowerCase().includes(query.toLowerCase())){
+      return log;
+    }
+    else return false;
+  });
+
+  const logList = filtered.map(log => <Log key={log._id} log={log}/>);
 
   return(
-    <div className='w-11/12 border-2'>
-      {logList}
+    <div className='inline-flex flex-col items-center'>
+      <Searchbar setQuery={setQuery}/>
+      <div className='w-11/12 border-2'>
+        {logList}
+      </div>
     </div>
   );
 }
