@@ -3,7 +3,7 @@ import axios from 'axios';
 import Log from './Log.jsx';
 
 function LogList() {
-  const [logs, setLogs] = useState('');
+  const [logs, setLogs] = useState([]);
 
   const getAllLogs = async () => {
     try{
@@ -18,15 +18,13 @@ function LogList() {
       console.log(err);
     }
   };
-
-  const logList = logs.map(log => (
-    <Log key={log._id} log={log}/>
-  ));
-
+  
   useEffect(getAllLogs, []);
 
+  const logList = logs.map(log => <Log key={log._id} log={log}/>);
+
   return(
-    <div>
+    <div className='w-11/12 border-2'>
       {logList}
     </div>
   );
