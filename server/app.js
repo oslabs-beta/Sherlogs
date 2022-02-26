@@ -5,7 +5,6 @@ const path = require('path');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 
-
 const errorHandler = require(path.resolve(__dirname, './utils/errorHandling'));
 const { stream } = require('./utils/logger');
 const connectDB = require('./database');
