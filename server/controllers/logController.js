@@ -17,6 +17,7 @@ logController.storeLog = async (req, res, next) => {
     });
 
     if (data) {
+      console.log('data', data);
       res.locals.logStored = data;
       return next();
     }
