@@ -15,8 +15,8 @@ logController.storeLog = async (req, res, next) => {
     }
     const data = await Logs.create({
       message: message,
-      level: level, 
-      timestamp: timestamp
+      level: level,
+      timestamp: timestamp,
     });
 
     if (data) {
