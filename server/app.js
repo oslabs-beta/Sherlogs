@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const path = require('path');
 const passport = require('passport');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const errorHandler = require(path.resolve(__dirname, './utils/errorHandling'));
 const { stream } = require('./utils/logger');
@@ -18,6 +19,7 @@ async function createApp(config) {
   app.use(helmet());
   app.use(morgan('combined', { stream }));
   app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(cors());
 
   app.use('/apiv1', apiV1Router);
 
