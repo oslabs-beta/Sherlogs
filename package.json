@@ -8,7 +8,10 @@
     "server:test:run": "jest --config ./jest.config.js --runInBand --detectOpenHandles",
     "server:test:watch": "jest --watchAll --verbose",
     "format:lint": "npx eslint --ext .jsx --ext .js . --fix",
-    "format:pretty": "prettier --write '**/*.{jsx,js,css,html}'"
+    "format:pretty": "prettier --write '**/*.{jsx,js,css,html}'",
+    "app:dev": "vite",
+    "app:build": "vite build",
+    "debug": "node --inspect-brk ../../vite/bin/vite"
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -22,12 +25,16 @@
     "mongoose": "^6.2.1",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
     "passport": "^0.5.2",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
     "winston": "^3.5.1"
   },
   "devDependencies": {
+    "@vitejs/plugin-react": "^1.2.0",
+    "vite": "^2.8.0",
     "eslint": "^8.9.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.4",
@@ -35,6 +42,7 @@
     "husky": "^7.0.4",
     "jest": "^27.5.1",
     "prettier": "^2.5.1",
+    "serve-static": "^1.14.2",
     "supertest": "^6.2.2"
   },
   "repository": {
