@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.App{
+  display: flex;
+  justify-content: center;    
+}

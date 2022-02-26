@@ -8,14 +8,13 @@ const logSchema = new Schema({
   },
   level: {
     type: String,
-    required: true
+    required: true,
   },
   timestamp: {
     type: Date,
     required: true,
-    default: Date.now
+    default: Date.now,
   },
 });
 
 module.exports = mongoose.model('log', logSchema);
-
