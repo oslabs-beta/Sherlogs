@@ -16,13 +16,6 @@ import {
 const LogFilter = () => {
   const [state, setState] = useState({
     time: '',
-    // error: false,
-    // warn: false,
-    // info: false,
-    // http: false,
-    // verbose: false,
-    // debug: false,
-    // silly: false,
     levels: [],
     keyword: '',
     queryTime: new Date(),
@@ -31,10 +24,6 @@ const LogFilter = () => {
 
   const handleLevelChange = (e) => {
     const { name } = e.target;
-    // setState({
-    //   ...state,
-    //   [name]: checked,
-    // });
     setState({
       ...state,
       levels: [...state.levels, name],
@@ -43,10 +32,7 @@ const LogFilter = () => {
 
   const handleTimeChange = (e) => {
     const { value } = e.target;
-    // setState({
-    //   ...state,
-    //   time: value,
-    // });
+    
     if (value === 'hour') {
       const hour = new Date();
       hour.setTime(hour.getTime() - 1000 * 60 * 60);
@@ -82,12 +68,10 @@ const LogFilter = () => {
     } else {
       setState({
         ...state,
-        startSearch: value,
+        // startSearch: value,
         time: value,
       });
     }
-
-    console.log(state);
   };
 
   const handleKeywordChange = (e) => {
