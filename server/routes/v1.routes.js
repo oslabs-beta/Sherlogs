@@ -3,6 +3,7 @@ const Router = express.Router();
 const authRouter = require('./auth.routes');
 
 Router.use('/auth', authRouter);
+const logController = require('../controllers/logController');
 
 //This code handles a GET request for profile.
 //It returns a "You made it to the secure route" message.
@@ -15,8 +16,6 @@ Router.get('/profile', (req, res, next) => {
     token: req.query.secret_token,
   });
 });
-
-const logController = require('../controllers/logController');
 
 Router.post('/log/store', logController.storeLog, (req, res, next) => {
   const { logStored } = res.locals;
@@ -33,6 +32,15 @@ Router.get('/log/getAllLogs', logController.getAllLogs, (req, res, next) => {
   return res.status(200).json({
     status: true,
     all: allLogs,
+  });
+});
+
+Router.get('/log/getAllLogs', logController.getAllLogs, (req, res, next) => {
+  const { allLogs } = res.locals;
+  return res.status(200).json({
+    status: true,
+    all: allLogs,
+    message: 'Successfully get logs from DB',
   });
 });
 
