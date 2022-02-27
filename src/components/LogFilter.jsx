@@ -16,21 +16,26 @@ import {
 const LogFilter = () => {
   const [state, setState] = useState({
     time: '',
-    error: false,
-    warn: false,
-    info: false,
-    http: false,
-    verbose: false,
-    debug: false,
-    silly: false,
+    // error: false,
+    // warn: false,
+    // info: false,
+    // http: false,
+    // verbose: false,
+    // debug: false,
+    // silly: false,
+    levels: [],
     keyword: '',
   });
 
   const handleLevelChange = (e) => {
     const { name, checked } = e.target;
+    // setState({
+    //   ...state,
+    //   [name]: checked,
+    // });
     setState({
       ...state,
-      [name]: checked,
+      levels: [...state.levels, name]
     });
   };
 
@@ -48,6 +53,13 @@ const LogFilter = () => {
       ...state,
       keyword: value.toLowerCase(),
     });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log('state on submit', state);
+    // axios
+    // .get
   };
 
   return (
@@ -106,7 +118,7 @@ const LogFilter = () => {
         />
       </FormGroup>
 
-      <Button variant='contained'>Submit</Button>
+      <Button variant='contained' onClick={handleSubmit}>Submit</Button>
     </div>
   );
 };
