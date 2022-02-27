@@ -52,7 +52,7 @@ const LogFilter = () => {
         variant='outlined'
         onChange={handleKeywordChange}
       />
-      
+
       <FormGroup className='flex flex-row' row={true}>
         <FormControlLabel
           control={<Checkbox onChange={handleLevelChange} name='error' />}
