@@ -25,6 +25,8 @@ const LogFilter = () => {
     // silly: false,
     levels: [],
     keyword: '',
+    queryTime: new Date(),
+    startSearch: '',
   });
 
   const handleLevelChange = (e) => {
@@ -41,10 +43,51 @@ const LogFilter = () => {
 
   const handleTimeChange = (e) => {
     const { value } = e.target;
-    setState({
-      ...state,
-      time: value,
-    });
+    // setState({
+    //   ...state,
+    //   time: value,
+    // });
+    if (value === 'hour') {
+      const hour = new Date();
+      hour.setTime(hour.getTime() - 1000 * 60 * 60);
+      setState({
+        ...state,
+        startSearch: hour,
+        time: value,
+      });
+    } else if (value === 'day') {
+      const day = new Date();
+      day.setDate(day.getDate() - 1);
+      setState({
+        ...state,
+        startSearch: day,
+        time: value,
+      });
+    } else if (value === 'week') {
+      const week = new Date();
+      week.setDate(week.getDate() - 7);
+      setState({
+        ...state,
+        startSearch: week,
+        time: value,
+      });
+    } else if (value === 'month') {
+      const month = new Date();
+      month.setDate(month.getDate() - 30);
+      setState({
+        ...state,
+        startSearch: month,
+        time: value,
+      });
+    } else {
+      setState({
+        ...state,
+        startSearch: value,
+        time: value,
+      });
+    }
+
+    console.log(state);
   };
 
   const handleKeywordChange = (e) => {
@@ -55,7 +98,7 @@ const LogFilter = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('state on submit', state);
     // axios
