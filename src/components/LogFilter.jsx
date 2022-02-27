@@ -1,4 +1,4 @@
-import React, { useState, setState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import {
   Checkbox,
@@ -10,34 +10,56 @@ import {
   FormControl,
   Select,
   TextField,
+  Button,
 } from '@mui/material';
 
-//filtering
-//filter by keyword
-
 const LogFilter = () => {
-  const [time, setTime] = useState('');
+  const [state, setState] = useState({
+    time: '',
+    error: false,
+    warn: false,
+    info: false,
+    http: false,
+    verbose: false,
+    debug: false,
+    silly: false,
+    keyword: '',
+  });
 
   const handleLevelChange = (e) => {
-    console.log(e.target.name, e.target.checked);
+    const { name, checked } = e.target;
+    setState({
+      ...state,
+      [name]: checked,
+    });
   };
 
   const handleTimeChange = (e) => {
-    setTime(e.target.value);
-    console.log(e.target.value);
+    const { value } = e.target;
+    setState({
+      ...state,
+      time: value,
+    });
   };
 
   const handleKeywordChange = (e) => {
-    console.log(e.target.value);
+    const { value } = e.target;
+    setState({
+      ...state,
+      keyword: value.toLowerCase(),
+    });
   };
 
   return (
-    // <div className='border 2px grid grid-rows-2 grid-flow-col gap-4'>
     <div className='flex items-center justify-between'>
+      <h3>Log Search</h3>
       <Box sx={{ minWidth: 120 }}>
         <FormControl fullWidth>
           <InputLabel>Time range</InputLabel>
-          <Select value={time} label='time-range' onChange={handleTimeChange}>
+          <Select
+            value={state.time}
+            label='time-range'
+            onChange={handleTimeChange}>
             <MenuItem value='hour'>Last hour</MenuItem>
             <MenuItem value='day'>Last day</MenuItem>
             <MenuItem value='week'>Last Week</MenuItem>
@@ -83,6 +105,8 @@ const LogFilter = () => {
           label='Silly'
         />
       </FormGroup>
+
+      <Button variant='contained'>Submit</Button>
     </div>
   );
 };
