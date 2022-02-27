@@ -35,7 +35,7 @@ const LogFilter = () => {
     // });
     setState({
       ...state,
-      levels: [...state.levels, name]
+      levels: [...state.levels, name],
     });
   };
 
@@ -118,7 +118,9 @@ const LogFilter = () => {
         />
       </FormGroup>
 
-      <Button variant='contained' onClick={handleSubmit}>Submit</Button>
+      <Button variant='contained' onClick={handleSubmit}>
+        Submit
+      </Button>
     </div>
   );
 };
