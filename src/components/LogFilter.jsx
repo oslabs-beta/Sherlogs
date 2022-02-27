@@ -32,7 +32,7 @@ const LogFilter = () => {
 
   const handleTimeChange = (e) => {
     const { value } = e.target;
-    
+
     if (value === 'hour') {
       const hour = new Date();
       hour.setTime(hour.getTime() - 1000 * 60 * 60);
