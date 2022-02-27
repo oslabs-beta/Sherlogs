@@ -28,7 +28,7 @@ const LogFilter = () => {
   });
 
   const handleLevelChange = (e) => {
-    const { name, checked } = e.target;
+    const { name } = e.target;
     // setState({
     //   ...state,
     //   [name]: checked,
