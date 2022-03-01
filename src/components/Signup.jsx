@@ -92,7 +92,7 @@ const Signup = () => {
           </div>
         </form>
         <footer>
-          <div className='text-center w-full text-pink-900 font-bold py-2 px-4 mb-6 rounded'>
+          <div className='text-center w-full text-red-900 font-bold py-2 px-4 mb-6 rounded'>
             {inputError && inputError}
           </div>
         </footer>
