@@ -120,28 +120,16 @@ const LogFilter = () => {
           label='Error'
         />
         <FormControlLabel
-          control={<Checkbox onChange={handleLevelChange} name='warn' />}
-          label='Warn'
+          control={<Checkbox onChange={handleLevelChange} name='warning' />}
+          label='Warning'
         />
         <FormControlLabel
           control={<Checkbox onChange={handleLevelChange} name='info' />}
           label='Info'
         />
         <FormControlLabel
-          control={<Checkbox onChange={handleLevelChange} name='http' />}
-          label='Http'
-        />
-        <FormControlLabel
-          control={<Checkbox onChange={handleLevelChange} name='verbose' />}
-          label='Verbose'
-        />
-        <FormControlLabel
           control={<Checkbox onChange={handleLevelChange} name='debug' />}
           label='Debug'
-        />
-        <FormControlLabel
-          control={<Checkbox onChange={handleLevelChange} name='silly' />}
-          label='Silly'
         />
       </FormGroup>
 
