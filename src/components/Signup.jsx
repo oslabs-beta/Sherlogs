@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 // import { Link, useNavigate } from 'react-router-dom';
-import { FiUserCheck } from 'react-icons/fi';
+import { FiUserPlus } from 'react-icons/fi';
 import { Button, TextField } from '@mui/material';
 
 const Signup = () => {
@@ -50,7 +50,7 @@ const Signup = () => {
     <div className='flex h-screen bg-white'>
       <div className='w-full max-w-xs m-auto bg-gray-300 rounded p-5'>
         <header>
-          <FiUserCheck className='h-10 w-10 text-blue-500 mx-auto mb-5' />
+          <FiUserPlus className='h-10 w-10 text-blue-500 mx-auto mb-5' />
         </header>
         <form id='signup'>
           <div>
