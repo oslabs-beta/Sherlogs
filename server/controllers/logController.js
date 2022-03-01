@@ -1,7 +1,5 @@
-const User = require('../models/logs');
 const Logs = require('../models/logs');
 const path = require('path');
-const errorHandler = require(path.resolve(__dirname, '../utils/errorHandling'));
 
 const logController = {};
 
