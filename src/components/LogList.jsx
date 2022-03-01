@@ -8,36 +8,35 @@ function LogList() {
   const [query, setQuery] = useState('');
 
   const getAllLogs = async () => {
-    try{
-      const response = await axios.get('http://localhost:3300/apiv1/log/getAllLogs');
+    try {
+      const response = await axios.get(
+        'http://localhost:3300/apiv1/log/getAllLogs'
+      );
       const data = response.data;
       console.log(response.data.all);
-      if(data.status){
+      if (data.status) {
         setLogs(data.all.reverse());
       }
-    }
-    catch(err){
+    } catch (err) {
       console.log(err);
     }
   };
-  
+
   useEffect(getAllLogs, []);
 
-  const filtered = logs.filter(log => {
-    if(query === ''){
+  const filtered = logs.filter((log) => {
+    if (query === '') {
       return log;
-    }
-    else if(log.message.toLowerCase().includes(query.toLowerCase())){
+    } else if (log.message.toLowerCase().includes(query.toLowerCase())) {
       return log;
-    }
-    else return false;
+    } else return false;
   });
 
-  const logList = filtered.map(log => <Log key={log._id} log={log}/>);
+  const logList = filtered.map((log) => <Log key={log._id} log={log} />);
 
-  return(
+  return (
     <div className='inline-flex flex-col items-center'>
-      <Searchbar setQuery={setQuery}/>
+      <Searchbar setQuery={setQuery} />
       <div className='w-11/12 border-2'>
         {logList}
         {logList.length === 0 && <p>No results found</p>}

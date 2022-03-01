@@ -28,7 +28,10 @@ const Login = () => {
       .then((res) => {
         console.log(res);
         if (res.data.status === 403) {
-          setInputError('Missing username or password.');
+          setInputError('Username or passcord incorrect.');
+        }
+        if (res.data.status === 400) {
+          setInputError('Error logging in. Please check username and password inputs.');
         }
         if (!res.data.status && res.status === 200) {
           setInputError('Login Successful');
