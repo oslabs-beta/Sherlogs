@@ -13,14 +13,14 @@ import {
   Button,
 } from '@mui/material';
 
-const LogFilter = () => {
-  const [state, setState] = useState({
-    time: '',
-    levels: [],
-    keyword: '',
-    queryTime: new Date(),
-    startSearch: '',
-  });
+const LogFilter = ({setState, state}) => {
+  // const [state, setState] = useState({
+  //   time: '',
+  //   levels: [],
+  //   keyword: '',
+  //   queryTime: new Date(),
+  //   startSearch: '',
+  // });
 
   const handleLevelChange = (e) => {
     const { name } = e.target;
@@ -68,7 +68,6 @@ const LogFilter = () => {
     } else {
       setState({
         ...state,
-        // startSearch: value,
         time: value,
       });
     }
@@ -91,7 +90,7 @@ const LogFilter = () => {
 
   return (
     <div className='flex items-center justify-between'>
-      <h3>Log Search</h3>
+      <h3 className='mr-5'>Log Search</h3>
       <Box sx={{ minWidth: 120 }}>
         <FormControl fullWidth>
           <InputLabel>Time range</InputLabel>
@@ -101,7 +100,7 @@ const LogFilter = () => {
             onChange={handleTimeChange}>
             <MenuItem value='hour'>Last hour</MenuItem>
             <MenuItem value='day'>Last day</MenuItem>
-            <MenuItem value='week'>Last Week</MenuItem>
+            <MenuItem value='week'>Last week</MenuItem>
             <MenuItem value='month'>Last month</MenuItem>
             <MenuItem value='all'>All time</MenuItem>
           </Select>
@@ -114,7 +113,7 @@ const LogFilter = () => {
         onChange={handleKeywordChange}
       />
 
-      <FormGroup className='flex flex-row' row={true}>
+      <FormGroup className='flex flex-row ml-5' row={true}>
         <FormControlLabel
           control={<Checkbox onChange={handleLevelChange} name='error' />}
           label='Error'

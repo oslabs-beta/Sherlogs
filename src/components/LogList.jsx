@@ -7,6 +7,13 @@ import LogFilter from './LogFilter.jsx';
 function LogList() {
   const [logs, setLogs] = useState([]);
   const [query, setQuery] = useState('');
+  const [state, setState] = useState({
+    time: '',
+    levels: [],
+    keyword: '',
+    queryTime: new Date(),
+    startSearch: '',
+  });
 
   const getAllLogs = async () => {
     try {
@@ -37,9 +44,9 @@ function LogList() {
 
   return (
     <div className='inline-flex flex-col items-center'>
-      <LogFilter />
+      <LogFilter state={state} setState={setState}/>
       <Searchbar setQuery={setQuery} />
-      <div className='w-11/12 border-2'>
+      <div className='w-11/12 border-2 border-dark-teal'>
         {logList}
         {logList.length === 0 && <p>No results found</p>}
       </div>
