@@ -7,6 +7,7 @@ module.exports = {
     colors: {
       'bright-turquoise': '#0ce9d1',
       'dark': '#061f4d',
+      'less-dark' : '#2a487d',
       'red' : '#d94e3a',
       'dark-teal' : '#0c7fa6',
       'teal' : '#0c9eb2',
