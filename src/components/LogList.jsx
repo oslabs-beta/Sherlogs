@@ -44,7 +44,7 @@ function LogList() {
 
   return (
     <div className='inline-flex flex-col items-center bg-dark w-full h-max'>
-      <LogFilter state={state} setState={setState}/>
+      <LogFilter state={state} setState={setState} />
       <Searchbar setQuery={setQuery} />
       <div className='w-11/12 border-2 border-less-dark'>
         {logList}

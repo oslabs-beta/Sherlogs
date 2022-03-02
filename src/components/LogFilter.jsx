@@ -13,7 +13,7 @@ import {
   Button,
 } from '@mui/material';
 
-const LogFilter = ({setState, state}) => {
+const LogFilter = ({ setState, state }) => {
   // const [state, setState] = useState({
   //   time: '',
   //   levels: [],
