@@ -28,7 +28,7 @@ const Signup = () => {
           password: state.password,
         })
         .then((res) => {
-            console.log(res);
+          console.log(res);
           if (res.data.status === 409) {
             setInputError('Username already in use.');
           }
