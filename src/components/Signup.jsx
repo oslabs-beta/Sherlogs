@@ -28,11 +28,12 @@ const Signup = () => {
           password: state.password,
         })
         .then((res) => {
+            console.log(res);
           if (res.data.status === 409) {
             setInputError('Username already in use.');
           }
           if (res.data.status === 403) {
-            setInputError('Missing username or password.');
+            setInputError('Error creating account. Check input fields.');
           }
           if (!res.data.status && res.status === 200) {
             setInputError('Signup Successful');
