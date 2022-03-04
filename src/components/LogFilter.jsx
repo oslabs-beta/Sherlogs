@@ -164,14 +164,18 @@ const LogFilter = ({ setState, state }) => {
         </Menu>
       </div>
       <div className='py-1 px-1 m-1'>
-        <h2 className='text-md font-semi-bold font-medium text-white'>Levels</h2>
+        <h2 className='text-md font-semi-bold font-medium text-white'>
+          Levels
+        </h2>
         <input
           type='checkbox'
           name='error'
           className='rounded-md py-2.5 px-2.5 m-1'
           onClick={handleLevelChange}
         />
-        <label className='rounded-md py-1 px-1 m-1 text-sm font-medium text-white'>Error</label>
+        <label className='rounded-md py-1 px-1 m-1 text-sm font-medium text-white'>
+          Error
+        </label>
 
         <input
           type='checkbox'
@@ -179,7 +183,9 @@ const LogFilter = ({ setState, state }) => {
           className='rounded-md py-2.5 px-2.5 m-1'
           onClick={handleLevelChange}
         />
-        <label className='py-1 px-1 m-1 text-sm font-medium text-white'>Warning</label>
+        <label className='py-1 px-1 m-1 text-sm font-medium text-white'>
+          Warning
+        </label>
 
         <input
           type='checkbox'
@@ -187,7 +193,9 @@ const LogFilter = ({ setState, state }) => {
           className='rounded-md py-2.5 px-2.5 m-1'
           onClick={handleLevelChange}
         />
-        <label className='py-1 px-1 m-1 text-sm font-medium text-white'>Info</label>
+        <label className='py-1 px-1 m-1 text-sm font-medium text-white'>
+          Info
+        </label>
 
         <input
           type='checkbox'
@@ -195,7 +203,9 @@ const LogFilter = ({ setState, state }) => {
           className='rounded-md py-2.5 px-2.5 m-1'
           onClick={handleLevelChange}
         />
-        <label className='py-1 px-1 m-1 text-sm font-medium text-white'>Debug</label>
+        <label className='py-1 px-1 m-1 text-sm font-medium text-white'>
+          Debug
+        </label>
       </div>
       <div className='py-1 px-1 m-1'>
         <input
