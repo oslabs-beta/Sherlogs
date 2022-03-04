@@ -43,12 +43,12 @@ function LogList() {
   const logList = filtered.map((log) => <Log key={log._id} log={log} />);
 
   return (
-    <div className='inline-flex flex-col items-center bg-dark w-full h-max'>
+    <div className='inline-flex flex-col items-center bg-dark w-full h-max pb-5'>
       <LogFilter state={state} setState={setState} />
       <Searchbar setQuery={setQuery} />
       <div className='w-11/12 border-2 border-less-dark'>
         {logList}
-        {logList.length === 0 && <p>No results found</p>}
+        {logList.length === 0 && <p className='text-lighter-blue'>No results found</p>}
       </div>
     </div>
   );

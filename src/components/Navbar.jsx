@@ -14,13 +14,13 @@ const Navbar = () => {
         <div className='lg:hidden pt-2'>
           {open ? (
             <CgMenu
-              className='text-red'
+              className='text-teal'
               fontSize={28}
               onClick={() => setOpen(!open)}
             />
           ) : (
             <CgMenu
-              className='text-red'
+              className='text-teal'
               fontSize={28}
               onClick={() => setOpen(!open)}
             />
