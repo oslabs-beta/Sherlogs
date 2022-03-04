@@ -4,6 +4,7 @@ const authRouter = require('./auth.routes');
 
 Router.use('/auth', authRouter);
 const logController = require('../controllers/logController');
+const filterLogController = require('../controllers/filterLogController');
 
 //This code handles a GET request for profile.
 //It returns a "You made it to the secure route" message.
@@ -35,13 +36,21 @@ Router.get('/log/getAllLogs', logController.getAllLogs, (req, res, next) => {
   });
 });
 
-Router.get('/log/getAllLogs', logController.getAllLogs, (req, res, next) => {
-  const { allLogs } = res.locals;
-  return res.status(200).json({
-    status: true,
-    all: allLogs,
-    message: 'Successfully get logs from DB',
-  });
+Router.post('/log/filter', filterLogController.filter, (req, res, next) => {
+  const { filteredLogs, noMatchFound } = res.locals;
+  if (noMatchFound) {
+    return res.status(204).json({
+      status: false,
+      filterResult: noMatchFound,
+      message: 'No collection matches filter parameter',
+    });
+  } else {
+    return res.status(200).json({
+      status: true,
+      filtered: filteredLogs,
+      message: 'Successfully get collection of fitered logs from DB',
+    });
+  }
 });
 
 module.exports = Router;
