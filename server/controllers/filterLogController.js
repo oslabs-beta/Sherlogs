@@ -3,11 +3,9 @@ const Logs = require('../models/logs');
 const filterLogController = {};
 
 filterLogController.filter = async (req, res, next) => {
-  console.log('request', req);
   console.log('req body', req.body);
-  console.log('header', req.headers);
   try {
-    const { level, startSearch, keyword } = req.body;
+    const { levels, startSearch, keyword } = req.body.data;
 
     // if (!level && !startSearch && !keyword) {
     //   const dataError = {
@@ -18,10 +16,10 @@ filterLogController.filter = async (req, res, next) => {
     //   return next(dataError);
     // }
 
-    console.log(level, startSearch, keyword);
+    console.log('level: ', levels, 'start search: ', startSearch, 'keyword: ', keyword);
     const match = {};
-    if (level) {
-      match['level'] = level;
+    if (levels) {
+      match['level'] = levels;
     }
 
     if (startSearch) {
@@ -33,7 +31,7 @@ filterLogController.filter = async (req, res, next) => {
       match['$text'] = { $search: keyword };
     }
 
-    console.log(match);
+    console.log('match: ', match);
 
     const data = await Logs.find(match);
 
