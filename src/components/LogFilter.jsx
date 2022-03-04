@@ -211,7 +211,7 @@ const LogFilter = ({ setState, state }) => {
         <input
           placeholder='Enter keyword'
           type='text'
-          className='w-full bg-less-dark h-9 rounded-md placeholder:text-lighter-blue placeholder:text-sm text-white text-sm font-medium'
+          className='p-1 w-full bg-less-dark h-9 rounded-md placeholder:text-lighter-blue placeholder:text-sm text-white text-sm font-medium'
           onChange={handleKeywordChange}></input>
       </div>
       <div>
