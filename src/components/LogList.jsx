@@ -30,6 +30,33 @@ function LogList() {
     }
   };
 
+  const fetchFilteredLogs = async () => {
+    try {
+      const response = await axios.post(
+        'http://localhost:3300/apiv1/log/filter',
+        { data: state }
+      );
+      console.log('response', response);
+      const data = response.data;
+      if (data.status) {
+        setLogs(data.all.reverse());
+      }
+      // axios({
+      //   method: 'get',
+      //   url: 'http://localhost:3300/apiv1/log/filter',
+      //   headers: {},
+      //   data: state
+      // });
+      // fetch ('http://localhost:3300/apiv1/log/filter', {
+      //   method: 'POST',
+      //   body: state,
+      //   headers: {'content-type': 'text/json'}
+      // });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(getAllLogs, []);
 
   const filtered = logs.filter((log) => {
@@ -44,7 +71,11 @@ function LogList() {
 
   return (
     <div className='inline-flex flex-col items-center bg-dark w-full h-max'>
-      <LogFilter state={state} setState={setState} />
+      <LogFilter
+        state={state}
+        setState={setState}
+        fetchFilteredLogs={fetchFilteredLogs}
+      />
       <Searchbar setQuery={setQuery} />
       <div className='w-11/12 border-2 border-less-dark'>
         {logList}

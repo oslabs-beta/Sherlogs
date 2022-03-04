@@ -3,17 +3,20 @@ const Logs = require('../models/logs');
 const filterLogController = {};
 
 filterLogController.filter = async (req, res, next) => {
+  console.log('request', req);
+  console.log('req body', req.body);
+  console.log('header', req.headers);
   try {
     const { level, startSearch, keyword } = req.body;
 
-    if (!level && !startSearch && !keyword) {
-      const dataError = {
-        log: 'filterLogController middleware: no target for filtering',
-        status: 406,
-        message: { err: 'An error occurred' },
-      };
-      return next(dataError);
-    }
+    // if (!level && !startSearch && !keyword) {
+    //   const dataError = {
+    //     log: 'filterLogController middleware: no target for filtering',
+    //     status: 406,
+    //     message: { err: 'An error occurred' },
+    //   };
+    //   return next(dataError);
+    // }
 
     console.log(level, startSearch, keyword);
     const match = {};

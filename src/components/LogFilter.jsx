@@ -3,7 +3,7 @@ import { Menu, Transition } from '@headlessui/react';
 import { BiChevronDown } from 'react-icons/bi';
 import axios from 'axios';
 
-const LogFilter = ({ setState, state }) => {
+const LogFilter = ({ setState, state, fetchFilteredLogs }) => {
   const handleLevelChange = (e) => {
     const { name } = e.target;
     setState({
@@ -61,13 +61,6 @@ const LogFilter = ({ setState, state }) => {
       ...state,
       keyword: value.toLowerCase(),
     });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log('state on submit', state);
-    // axios
-    // .get
   };
 
   return (
@@ -216,7 +209,7 @@ const LogFilter = ({ setState, state }) => {
       </div>
       <div>
         <button
-          onClick={handleSubmit}
+          onClick={() => fetchFilteredLogs()}
           className='text-sm font-medium text-white rounded-md py-2.5 px-2.5 m-1 text-white bg-lighter-blue hover:bg-medium-blue shadow-md scale-90'>
           Submit
         </button>
