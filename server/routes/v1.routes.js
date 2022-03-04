@@ -37,12 +37,20 @@ Router.get('/log/getAllLogs', logController.getAllLogs, (req, res, next) => {
 });
 
 Router.get('/log/filter', filterLogController.filter, (req, res, next) => {
-  const { filteredLogs } = res.locals;
-  return res.status(200).json({
-    status: true,
-    filtered: filteredLogs,
-    message: 'Successfully get collection of fitered logs from DB',
-  });
+  const { filteredLogs, noMatchFound } = res.locals;
+  if (noMatchFound) {
+    return res.status(204).json({
+      status: false,
+      filterResult: noMatchFound,
+      message: 'No collection matches filter parameter',
+    });
+  } else {
+    return res.status(200).json({
+      status: true,
+      filtered: filteredLogs,
+      message: 'Successfully get collection of fitered logs from DB',
+    });
+  }
 });
 
 module.exports = Router;

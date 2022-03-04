@@ -15,6 +15,7 @@ filterLogController.filter = async (req, res, next) => {
       return next(dataError);
     }
 
+    console.log(level, startSearch, keyword);
     const match = {};
     if (level) {
       match['level'] = level;
@@ -34,18 +35,19 @@ filterLogController.filter = async (req, res, next) => {
     const data = await Logs.find(match);
 
     if (!data) {
-      const dataError = {
-        log: 'filterLogController middleware: error filtering',
-        status: 406,
-        message: { err: 'An error occurred' },
-      };
-      return next(dataError);
+      res.locals.noMatchFound =
+        'filterLogController middleware: no match for filtering';
     }
 
     res.locals.filteredLogs = data;
     return next();
   } catch (err) {
-    console.log(`error from filter log. Message: ${err}`);
+    const filterError = {
+      log: 'filterLogController middleware: error running filter middleware',
+      status: 400,
+      message: { err: 'An error occurred' },
+    };
+    return next(filterError);
   }
 };
 
