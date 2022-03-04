@@ -1,7 +1,5 @@
-const User = require('../models/logs');
 const Logs = require('../models/logs');
 const path = require('path');
-const errorHandler = require(path.resolve(__dirname, '../utils/errorHandling'));
 
 const logController = {};
 
@@ -16,7 +14,7 @@ logController.storeLog = async (req, res, next) => {
     const data = await Logs.create({
       message: message,
       level: level,
-      timestamp: timestamp,
+      timestamp: new Date(timestamp),
     });
 
     if (data) {

@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const logSchema = new Schema({
   message: {
     type: String,
+    text: true,
     required: true,
   },
   level: {
