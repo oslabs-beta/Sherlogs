@@ -16,7 +16,14 @@ filterLogController.filter = async (req, res, next) => {
     //   return next(dataError);
     // }
 
-    console.log('level: ', levels, 'start search: ', startSearch, 'keyword: ', keyword);
+    console.log(
+      'level: ',
+      levels,
+      'start search: ',
+      startSearch,
+      'keyword: ',
+      keyword
+    );
     const match = {};
     if (levels) {
       match['level'] = levels;
