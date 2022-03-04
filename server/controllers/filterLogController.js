@@ -5,7 +5,7 @@ const filterLogController = {};
 filterLogController.filter = async (req, res, next) => {
   try {
     const { level, startSearch, keyword } = req.body;
-    console.log(level, startSearch, keyword);
+
     if (!level && !startSearch && !keyword) {
       const dataError = {
         log: 'filterLogController middleware: no target for filtering',
@@ -25,9 +25,9 @@ filterLogController.filter = async (req, res, next) => {
       match['timestamp'] = { $gte: range };
     }
 
-    // if (keyword){
-    //   match['keyword'] = keyword;
-    // }
+    if (keyword) {
+      match['$text'] = { $search: keyword };
+    }
 
     console.log(match);
 
@@ -48,19 +48,5 @@ filterLogController.filter = async (req, res, next) => {
     console.log(`error from filter log. Message: ${err}`);
   }
 };
-
-// { level: { $lookup: ['info', 'warn'] } }
-// { timestamp: new Date('2022-02-25T03:06:23.080Z') }
-// { keyword: /match.keyword/}
-// { level: 'info' }
-// {
-//   timestamp: {
-//     $lt: [
-//       { $dateFromString: { dateString: '$date' } },
-//       new Date('2022-02-25T03:14:07.428Z'),
-//     ],
-//   },
-// }
-// { _id: req.query._id }
 
 module.exports = filterLogController;
