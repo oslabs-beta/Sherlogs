@@ -7,12 +7,7 @@ filterLogController.filter = async (req, res, next) => {
     const { level, startSearch, keyword } = req.body;
 
     if (!level && !startSearch && !keyword) {
-      const dataError = {
-        log: 'filterLogController middleware: no target for filtering',
-        status: 406,
-        message: { err: 'An error occurred' },
-      };
-      return next(dataError);
+      return res.redirect('/apiv1/log/getAllLogs');
     }
 
     console.log(level, startSearch, keyword);
@@ -38,7 +33,6 @@ filterLogController.filter = async (req, res, next) => {
       res.locals.noMatchFound =
         'filterLogController middleware: no match for filtering';
     }
-
     res.locals.filteredLogs = data;
     return next();
   } catch (err) {
