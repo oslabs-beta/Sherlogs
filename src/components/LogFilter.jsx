@@ -1,27 +1,9 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
+import { Menu, Transition } from '@headlessui/react';
+import { BiChevronDown } from 'react-icons/bi';
 import axios from 'axios';
-import {
-  Checkbox,
-  FormControlLabel,
-  FormGroup,
-  Box,
-  InputLabel,
-  MenuItem,
-  FormControl,
-  Select,
-  TextField,
-  Button,
-} from '@mui/material';
 
 const LogFilter = ({ setState, state }) => {
-  // const [state, setState] = useState({
-  //   time: '',
-  //   levels: [],
-  //   keyword: '',
-  //   queryTime: new Date(),
-  //   startSearch: '',
-  // });
-
   const handleLevelChange = (e) => {
     const { name } = e.target;
     setState({
@@ -33,7 +15,7 @@ const LogFilter = ({ setState, state }) => {
   const handleTimeChange = (e) => {
     const { value } = e.target;
 
-    if (value === 'hour') {
+    if (value === 'Last hour') {
       const hour = new Date();
       hour.setTime(hour.getTime() - 1000 * 60 * 60);
       setState({
@@ -41,7 +23,7 @@ const LogFilter = ({ setState, state }) => {
         startSearch: hour,
         time: value,
       });
-    } else if (value === 'day') {
+    } else if (value === 'Last day') {
       const day = new Date();
       day.setDate(day.getDate() - 1);
       setState({
@@ -49,7 +31,7 @@ const LogFilter = ({ setState, state }) => {
         startSearch: day,
         time: value,
       });
-    } else if (value === 'week') {
+    } else if (value === 'Last week') {
       const week = new Date();
       week.setDate(week.getDate() - 7);
       setState({
@@ -57,7 +39,7 @@ const LogFilter = ({ setState, state }) => {
         startSearch: week,
         time: value,
       });
-    } else if (value === 'month') {
+    } else if (value === 'Last month') {
       const month = new Date();
       month.setDate(month.getDate() - 30);
       setState({
@@ -89,52 +71,146 @@ const LogFilter = ({ setState, state }) => {
   };
 
   return (
-    <div className='flex items-center justify-between'>
-      <h3 className='mr-5'>Log Search</h3>
-      <Box sx={{ minWidth: 120 }}>
-        <FormControl fullWidth>
-          <InputLabel>Time range</InputLabel>
-          <Select
-            value={state.time}
-            label='time-range'
-            onChange={handleTimeChange}>
-            <MenuItem value='hour'>Last hour</MenuItem>
-            <MenuItem value='day'>Last day</MenuItem>
-            <MenuItem value='week'>Last week</MenuItem>
-            <MenuItem value='month'>Last month</MenuItem>
-            <MenuItem value='all'>All time</MenuItem>
-          </Select>
-        </FormControl>
-      </Box>
+    <div className=' bg-red mr-3 ml-3 mt-3 pr-2 pl-2 rounded flex items-center justify-between'>
+      <h3 className='mr-5 text-md font-medium font-semibold text-black'>
+        Filter your search
+      </h3>
+      <div>
+        <Menu
+          as='div'
+          className='relative inline-block text-left py-2.5 px-2.5 ml-2'>
+          <div>
+            <Menu.Button className='inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75'>
+              {state.time ? state.time : 'Time range'}
+              <BiChevronDown
+                className='w-5 h-5 ml-2 -mr-1 text-violet-200 hover:text-violet-100'
+                aria-hidden='true'
+              />
+            </Menu.Button>
+          </div>
+          <Transition
+            as={Fragment}
+            enter='transition ease-out duration-100'
+            enterFrom='transform opacity-0 scale-95'
+            enterTo='transform opacity-100 scale-100'
+            leave='transition ease-in duration-75'
+            leaveFrom='transform opacity-100 scale-100'
+            leaveTo='transform opacity-0 scale-95'>
+            <Menu.Items className='absolute right-0 w-50 mt-2 origin-top-right bg-white divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
+              <div className='px-1 py-1 '>
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      className={`${
+                        active ? 'bg-violet-500 text-teal' : 'text-gray-900'
+                      } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                      value='Last hour'
+                      onClick={handleTimeChange}>
+                      Last hour
+                    </button>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      className={`${
+                        active ? 'bg-violet-500 text-teal' : 'text-gray-900'
+                      } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                      value='Last day'
+                      onClick={handleTimeChange}>
+                      Last day
+                    </button>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      className={`${
+                        active ? 'bg-violet-500 text-teal' : 'text-gray-900'
+                      } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                      value='Last week'
+                      onClick={handleTimeChange}>
+                      Last week
+                    </button>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      className={`${
+                        active ? 'bg-violet-500 text-teal' : 'text-gray-900'
+                      } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                      value='Last month'
+                      onClick={handleTimeChange}>
+                      Last month
+                    </button>
+                  )}
+                </Menu.Item>
+                <Menu.Item>
+                  {({ active }) => (
+                    <button
+                      className={`${
+                        active ? 'bg-violet-500 text-teal' : 'text-gray-900'
+                      } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                      value='All time'
+                      onClick={handleTimeChange}>
+                      All time
+                    </button>
+                  )}
+                </Menu.Item>
+              </div>
+            </Menu.Items>
+          </Transition>
+        </Menu>
+      </div>
+      <div className='py-1 px-1 m-1'>
+        <h2 className='text-md font-semi-bold font-medium text-white'>Levels</h2>
+        <input
+          type='checkbox'
+          name='error'
+          className='rounded-md py-2.5 px-2.5 m-1'
+          onClick={handleLevelChange}
+        />
+        <label className='rounded-md py-1 px-1 m-1 text-sm font-medium text-white'>Error</label>
 
-      <TextField
-        label='Keyword'
-        variant='outlined'
-        onChange={handleKeywordChange}
-      />
+        <input
+          type='checkbox'
+          name='warning'
+          className='rounded-md py-2.5 px-2.5 m-1'
+          onClick={handleLevelChange}
+        />
+        <label className='py-1 px-1 m-1 text-sm font-medium text-white'>Warning</label>
 
-      <FormGroup className='flex flex-row ml-5' row={true}>
-        <FormControlLabel
-          control={<Checkbox onChange={handleLevelChange} name='error' />}
-          label='Error'
+        <input
+          type='checkbox'
+          name='info'
+          className='rounded-md py-2.5 px-2.5 m-1'
+          onClick={handleLevelChange}
         />
-        <FormControlLabel
-          control={<Checkbox onChange={handleLevelChange} name='warning' />}
-          label='Warning'
-        />
-        <FormControlLabel
-          control={<Checkbox onChange={handleLevelChange} name='info' />}
-          label='Info'
-        />
-        <FormControlLabel
-          control={<Checkbox onChange={handleLevelChange} name='debug' />}
-          label='Debug'
-        />
-      </FormGroup>
+        <label className='py-1 px-1 m-1 text-sm font-medium text-white'>Info</label>
 
-      <Button variant='contained' onClick={handleSubmit}>
-        Submit
-      </Button>
+        <input
+          type='checkbox'
+          name='debug'
+          className='rounded-md py-2.5 px-2.5 m-1'
+          onClick={handleLevelChange}
+        />
+        <label className='py-1 px-1 m-1 text-sm font-medium text-white'>Debug</label>
+      </div>
+      <div className='py-1 px-1 m-1'>
+        <input
+          placeholder='Enter keyword'
+          type='text'
+          className='w-full bg-less-dark h-9 rounded-md placeholder:text-lighter-blue placeholder:text-sm text-white text-sm font-medium'
+          onChange={handleKeywordChange}></input>
+      </div>
+      <div>
+        <button
+          onClick={handleSubmit}
+          className='text-sm font-medium text-white rounded-md py-2.5 px-2.5 m-1 text-white bg-lighter-blue hover:bg-medium-blue shadow-md scale-90'>
+          Submit
+        </button>
+      </div>
     </div>
   );
 };
