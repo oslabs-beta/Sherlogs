@@ -7,15 +7,6 @@ filterLogController.filter = async (req, res, next) => {
   try {
     const { levels, startSearch, keyword } = req.body.data;
 
-    // if (!level && !startSearch && !keyword) {
-    //   const dataError = {
-    //     log: 'filterLogController middleware: no target for filtering',
-    //     status: 406,
-    //     message: { err: 'An error occurred' },
-    //   };
-    //   return next(dataError);
-    // }
-
     console.log(
       'level: ',
       levels,
