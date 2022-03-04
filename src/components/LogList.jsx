@@ -20,10 +20,9 @@ function LogList() {
       const response = await axios.get(
         'http://localhost:3300/apiv1/log/getAllLogs'
       );
-      const data = response.data;
-      console.log(response.data.all);
-      if (data.status) {
-        setLogs(data.all.reverse());
+      const data = response?.data;
+      if (data?.status) {
+        setLogs(data?.all.reverse());
       }
     } catch (err) {
       console.log(err);
@@ -38,30 +37,16 @@ function LogList() {
           data: state,
         }
       );
-      const data = response.data;
-      console.log(response.data);
+      const data = response?.data;
       if (data?.status) {
         setLogs(data?.filtered.reverse());
       }
-
-      // axios({
-      //   method: 'get',
-      //   url: 'http://localhost:3300/apiv1/log/filter',
-      //   headers: {},
-      //   data: state
-      // });
-      // fetch ('http://localhost:3300/apiv1/log/filter', {
-      //   method: 'POST',
-      //   body: state,
-      //   headers: {'content-type': 'text/json'}
-      // });
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(getAllLogs, []);
-  // useEffect(fetchFilteredLogs, [logs]);
 
   const filtered = logs.filter((log) => {
     if (query === '') {
