@@ -33,15 +33,14 @@ function LogList() {
   const fetchFilteredLogs = async () => {
     try {
       const response = await axios.post(
-        'http://localhost:3300/apiv1/log/filter',
-        {
+        'http://localhost:3300/apiv1/log/filter', {
           data: state,
         }
       );
       const data = response.data;
       console.log(response.data);
-      if (data.status) {
-        setLogs(data.filtered.reverse());
+      if (data?.status) {
+        setLogs(data?.filtered.reverse());
       }
 
       // axios({
@@ -62,6 +61,7 @@ function LogList() {
 
   useEffect(getAllLogs, []);
   // useEffect(fetchFilteredLogs, [logs]);
+
 
   const filtered = logs.filter((log) => {
     if (query === '') {
