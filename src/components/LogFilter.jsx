@@ -41,7 +41,7 @@ const LogFilter = ({ setState, state, fetchFilteredLogs }) => {
   };
 
   const handleTimeChange = (e) => {
-    const { value } = e.levelOption;
+    const { value } = e.target;
 
     if (value === 'Last hour') {
       const hour = new Date();
@@ -84,7 +84,7 @@ const LogFilter = ({ setState, state, fetchFilteredLogs }) => {
   };
 
   const handleKeywordChange = (e) => {
-    const { value } = e.levelOption;
+    const { value } = e.target;
     setState({
       ...state,
       keyword: value.toLowerCase(),
@@ -93,7 +93,7 @@ const LogFilter = ({ setState, state, fetchFilteredLogs }) => {
 
   useEffect(() => {
     //TODO: remove when out of development process
-    console.log('after update state.level', state.levels);
+    console.log('after update state.level', state);
   });
 
   return (

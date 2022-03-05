@@ -7,12 +7,12 @@ filterLogController.filter = async (req, res, next) => {
   try {
     const { levels, startSearch, keyword } = req.body.data;
 
-    if (!levels && !startSearch && !keyword) {
+    if (levels.length === undefined && !startSearch && !keyword) {
       return res.redirect('/apiv1/log/getAllLogs');
     }
 
     const match = {};
-    if (levels) {
+    if (levels.length) {
       match['level'] = levels;
     }
 
