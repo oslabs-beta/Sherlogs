@@ -11,14 +11,6 @@ filterLogController.filter = async (req, res, next) => {
       return res.redirect('/apiv1/log/getAllLogs');
     }
 
-    console.log(
-      'level: ',
-      levels,
-      'start search: ',
-      startSearch,
-      'keyword: ',
-      keyword
-    );
     const match = {};
     if (levels) {
       match['level'] = levels;

@@ -1,19 +1,47 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { BiChevronDown } from 'react-icons/bi';
-import axios from 'axios';
 
 const LogFilter = ({ setState, state, fetchFilteredLogs }) => {
   const handleLevelChange = (e) => {
     const { name } = e.target;
+    console.log(e.target);
+
+    const newLevel = (currentLevel, levelOption) => {
+      //TODO: remove comments and console.log when out of development process
+
+      //adding the first element
+      if (currentLevel.length === undefined) {
+        console.log('adding 1st value', [levelOption]);
+        return [levelOption];
+      }
+
+      const result = [...currentLevel];
+
+      //check to see if level selected already in the array
+      //if yes then remove them,
+      for (let i = 0; i < result.length; i++) {
+        if (result[i] === levelOption) {
+          result.splice(i, 1);
+          return result;
+        }
+      }
+
+      //if for loop doesn't terminate the func
+      //meaning the selected option is not inside the array
+      //so return current level with option added.
+      return [...result, name];
+    };
+
+    console.log('before update state', state.levels);
     setState({
       ...state,
-      levels: [...state.levels, name],
+      levels: newLevel(state.levels, name),
     });
   };
 
   const handleTimeChange = (e) => {
-    const { value } = e.target;
+    const { value } = e.levelOption;
 
     if (value === 'Last hour') {
       const hour = new Date();
@@ -56,12 +84,17 @@ const LogFilter = ({ setState, state, fetchFilteredLogs }) => {
   };
 
   const handleKeywordChange = (e) => {
-    const { value } = e.target;
+    const { value } = e.levelOption;
     setState({
       ...state,
       keyword: value.toLowerCase(),
     });
   };
+
+  useEffect(() => {
+    //TODO: remove when out of development process
+    console.log('after update state.level', state.levels);
+  });
 
   return (
     <div className=' bg-red mr-3 ml-3 mt-3 pr-2 pl-2 rounded flex items-center justify-between'>
@@ -172,7 +205,7 @@ const LogFilter = ({ setState, state, fetchFilteredLogs }) => {
 
         <input
           type='checkbox'
-          name='warning'
+          name='warn'
           className='rounded-md py-2.5 px-2.5 m-1'
           onClick={handleLevelChange}
         />
