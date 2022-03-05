@@ -7,9 +7,9 @@ const Searchbar = ({ setQuery }) => {
   return (
     <div className='m-5 w-1/2'>
       <input
-        placeholder='Search log messages'
+        placeholder='  Search logs'
         type='text'
-        className='border-2 w-full'
+        className='w-full bg-less-dark h-9 rounded-md placeholder:text-lighter-blue'
         onChange={onChange}></input>
     </div>
   );

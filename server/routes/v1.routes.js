@@ -36,7 +36,7 @@ Router.get('/log/getAllLogs', logController.getAllLogs, (req, res, next) => {
   });
 });
 
-Router.get('/log/filter', filterLogController.filter, (req, res, next) => {
+Router.post('/log/filter', filterLogController.filter, (req, res, next) => {
   try {
     const { filteredLogs, noMatchFound } = res.locals;
     if (noMatchFound) {
