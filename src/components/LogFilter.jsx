@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { BiChevronDown } from 'react-icons/bi';
-import axios from 'axios';
 
 const LogFilter = ({ setState, state, fetchFilteredLogs }) => {
   const handleLevelChange = (e) => {
@@ -172,7 +171,7 @@ const LogFilter = ({ setState, state, fetchFilteredLogs }) => {
 
         <input
           type='checkbox'
-          name='warning'
+          name='warn'
           className='rounded-md py-2.5 px-2.5 m-1'
           onClick={handleLevelChange}
         />
