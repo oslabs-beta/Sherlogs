@@ -20,10 +20,26 @@ function LogList() {
       const response = await axios.get(
         'http://localhost:3300/apiv1/log/getAllLogs'
       );
-      const data = response.data;
-      console.log(response.data.all);
-      if (data.status) {
-        setLogs(data.all.reverse());
+      const data = response?.data;
+      if (data?.status) {
+        setLogs(data?.all.reverse());
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const fetchFilteredLogs = async () => {
+    try {
+      const response = await axios.post(
+        'http://localhost:3300/apiv1/log/filter',
+        {
+          data: state,
+        }
+      );
+      const data = response?.data;
+      if (data?.status) {
+        setLogs(data?.filtered.reverse());
       }
     } catch (err) {
       console.log(err);
@@ -44,7 +60,11 @@ function LogList() {
 
   return (
     <div className='inline-flex flex-col items-center bg-dark w-full h-max pb-5'>
-      <LogFilter state={state} setState={setState} />
+      <LogFilter
+        state={state}
+        setState={setState}
+        fetchFilteredLogs={fetchFilteredLogs}
+      />
       <Searchbar setQuery={setQuery} />
       <div className='w-11/12 border-2 border-less-dark'>
         {logList}

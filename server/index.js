@@ -2,6 +2,7 @@ require('dotenv').config();
 const createApp = require('./app');
 
 const port = process.env.PORT;
+
 const config = {
   mongoUrl: process.env.MONGODB_URL,
 };
