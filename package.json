@@ -14,10 +14,7 @@
     "debug": "node --inspect-brk ../../vite/bin/vite"
   },
   "dependencies": {
-    "@emotion/react": "^11.8.1",
-    "@emotion/styled": "^11.8.1",
     "@headlessui/react": "^1.5.0",
-    "@mui/material": "^5.4.3",
     "axios": "^0.26.0",
     "bcrypt": "^5.0.1",
     "body-parser": "^1.19.1",
