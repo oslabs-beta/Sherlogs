@@ -1,11 +1,10 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { BiChevronDown } from 'react-icons/bi';
 
 const LogFilter = ({ setState, state, fetchFilteredLogs }) => {
   const handleLevelChange = (e) => {
     const { name } = e.target;
-    console.log(e.target);
 
     const newLevel = (currentLevel, levelOption) => {
       //TODO: remove comments and console.log when out of development process
@@ -33,7 +32,6 @@ const LogFilter = ({ setState, state, fetchFilteredLogs }) => {
       return [...result, name];
     };
 
-    console.log('before update state', state.levels);
     setState({
       ...state,
       levels: newLevel(state.levels, name),
@@ -79,6 +77,7 @@ const LogFilter = ({ setState, state, fetchFilteredLogs }) => {
       setState({
         ...state,
         time: value,
+        startSearch: '',
       });
     }
   };
@@ -90,11 +89,6 @@ const LogFilter = ({ setState, state, fetchFilteredLogs }) => {
       keyword: value.toLowerCase(),
     });
   };
-
-  useEffect(() => {
-    //TODO: remove when out of development process
-    console.log('after update state.level', state);
-  });
 
   return (
     <div className=' bg-less-dark mr-3 ml-3 mt-5 pr-2 pl-2 rounded flex items-center justify-between shadow-md shadow-extra-dark'>
