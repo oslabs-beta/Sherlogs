@@ -1,5 +1,3 @@
-const { red } = require('@mui/material/colors');
-
 module.exports = {
   content: ['./index.html', './src/**/*.{jsx, js}'],
   theme: {

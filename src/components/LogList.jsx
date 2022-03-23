@@ -38,7 +38,6 @@ function LogList() {
         }
       );
       const data = response?.data;
-      console.log(data);
 
       if (data?.status) {
         setLogs(data?.filtered.reverse());
