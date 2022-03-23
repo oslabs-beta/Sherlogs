@@ -37,19 +37,28 @@ Router.get('/log/getAllLogs', logController.getAllLogs, (req, res, next) => {
 });
 
 Router.post('/log/filter', filterLogController.filter, (req, res, next) => {
-  const { filteredLogs, noMatchFound } = res.locals;
-  if (noMatchFound) {
-    return res.status(204).json({
-      status: false,
-      filterResult: noMatchFound,
-      message: 'No collection matches filter parameter',
-    });
-  } else {
-    return res.status(200).json({
-      status: true,
-      filtered: filteredLogs,
-      message: 'Successfully get collection of fitered logs from DB',
-    });
+  try {
+    const { filteredLogs, noMatchFound } = res.locals;
+    if (noMatchFound) {
+      return res.status(204).json({
+        status: false,
+        filterResult: noMatchFound,
+        message: 'No collection matches filter parameter',
+      });
+    } else {
+      return res.status(200).json({
+        status: true,
+        filtered: filteredLogs,
+        message: 'Successfully get collection of fitered logs from DB',
+      });
+    }
+  } catch (err) {
+    const filterRouterError = {
+      log: '/log/filter router: error at router for filter log',
+      status: 400,
+      message: { err: 'An error occurred' },
+    };
+    return next(filterRouterError);
   }
 });
 

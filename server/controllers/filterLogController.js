@@ -7,16 +7,12 @@ filterLogController.filter = async (req, res, next) => {
   try {
     const { levels, startSearch, keyword } = req.body.data;
 
-    console.log(
-      'level: ',
-      levels,
-      'start search: ',
-      startSearch,
-      'keyword: ',
-      keyword
-    );
+    if (levels.length === undefined && !startSearch && !keyword) {
+      return res.redirect('/apiv1/log/getAllLogs');
+    }
+
     const match = {};
-    if (levels) {
+    if (levels.length) {
       match['level'] = levels;
     }
 
@@ -37,7 +33,6 @@ filterLogController.filter = async (req, res, next) => {
       res.locals.noMatchFound =
         'filterLogController middleware: no match for filtering';
     }
-
     res.locals.filteredLogs = data;
     return next();
   } catch (err) {

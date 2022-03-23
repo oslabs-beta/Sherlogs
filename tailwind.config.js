@@ -17,6 +17,7 @@ module.exports = {
       slate: 'rgb(248 250 252)',
       'dark-cyan': '#0d81a6',
       tomato: '#ff5a33',
+      'extra-dark': '#00004d'
     },
   },
   plugins: [],
