@@ -28,6 +28,16 @@ Router.post('/log/store', logController.storeLog, (req, res, next) => {
   });
 });
 
+Router.post('/front/log/store', logController.storeFrontLog, (req, res, next) => {
+  const { logStored } = res.locals;
+
+  return res.status(200).json({
+    status: true,
+    log: logStored,
+    message: 'Successfully stored frontend log into DB',
+  });
+});
+
 Router.get('/log/getAllLogs', logController.getAllLogs, (req, res, next) => {
   const { allLogs } = res.locals;
   return res.status(200).json({

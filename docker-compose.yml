@@ -28,5 +28,5 @@ services:
       - mongodb
     
 volumes:
-  mongodb:
+  mongodb: {}
 
