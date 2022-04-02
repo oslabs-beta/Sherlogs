@@ -1,53 +1,23 @@
 const Logs = require('../models/logs');
 const path = require('path');
+const { checkLogBody } = require('../utils/auxiliaryFunctions');
 
 const logController = {};
 
-//store a single log
 logController.storeLog = async (req, res, next) => {
+  const body = checkLogBody(req.body);
+
   try {
-    const { message, level, timestamp } = req.body;
-    if (!message || !level || !timestamp) {
-      throw new Error('Error at find log inside req.body');
-    }
     const data = await Logs.create({
-      message: message,
-      level: level,
-      timestamp: new Date(timestamp),
+      ...body,
+      timestamp: new Date(body.timestamp),
     });
+    res.locals.logStored = data;
+    return next();
 
-    if (data) {
-      // console.log('data', data);
-      res.locals.logStored = data;
-      return next();
-    }
   } catch (err) {
-    console.log(`error from storeLog. Message: ${err}`);
+    next({ message: err.message });
   }
-};
-
-logController.storeFrontLog = async (req, res, next) => {
-  console.log('frontend req body', req.body);
-  return next();
-  // try {
-  //   const { message, level, timestamp } = req.body;
-  //   if (!message || !level || !timestamp) {
-  //     throw new Error('Error at find log inside req.body');
-  //   }
-  //   const data = await Logs.create({
-  //     message: message,
-  //     level: level,
-  //     timestamp: new Date(timestamp),
-  //   });
-
-  //   if (data) {
-  //     // console.log('data', data);
-  //     res.locals.logStored = data;
-  //     return next();
-  //   }
-  // } catch (err) {
-  //   console.log(`error from storeLog. Message: ${err}`);
-  // }
 };
 
 logController.getAllLogs = async (req, res, next) => {
