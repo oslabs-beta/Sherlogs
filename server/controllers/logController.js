@@ -14,7 +14,6 @@ logController.storeLog = async (req, res, next) => {
     });
     res.locals.logStored = data;
     return next();
-
   } catch (err) {
     next({ message: err.message });
   }

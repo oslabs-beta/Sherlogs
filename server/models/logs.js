@@ -19,8 +19,8 @@ const logSchema = new Schema({
   isBackend: {
     type: Boolean,
     required: true,
-    default: true
-  }
+    default: true,
+  },
 });
 
 module.exports = mongoose.model('log', logSchema);
