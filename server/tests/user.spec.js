@@ -34,7 +34,7 @@ describe('POST /signup/', () => {
         .post(`${baseUrl}${auth}/signup/`)
         .send(data);
 
-      expect(response.statusCode).toBe(300);
+      expect(response.statusCode).toBe(200);
       expect(response.body.message).toEqual('Signup successful');
     });
 
