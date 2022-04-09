@@ -5,7 +5,7 @@ const filterLogController = {};
 filterLogController.filter = async (req, res, next) => {
   console.log('req body', req.body);
   try {
-    const { levels, startSearch, keyword } = req.body.data;
+    const { levels, startSearch, keyword, logOrigin } = req.body.data;
 
     if (levels.length === undefined && !startSearch && !keyword) {
       return res.redirect('/apiv1/log/getAllLogs');
@@ -23,6 +23,14 @@ filterLogController.filter = async (req, res, next) => {
 
     if (keyword) {
       match['$text'] = { $search: keyword };
+    }
+
+    if (logOrigin) {
+      if (logOrigin === 'Backend Logs') {
+        match['isBackend'] = true;
+      } else if (logOrigin === 'Frontend Logs') {
+        match['isBackend'] = false;
+      }
     }
 
     console.log('match: ', match);
