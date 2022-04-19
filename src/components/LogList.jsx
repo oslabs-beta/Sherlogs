@@ -41,7 +41,10 @@ function LogList() {
       const data = response?.data;
 
       if (data?.status) {
+        console.log(data);
+        // if (data && data.filter) {
         setLogs(data?.filtered.reverse());
+        // } else console.log('There is no data to filter');
       }
     } catch (err) {
       console.log(err);

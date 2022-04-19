@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { BiChevronDown } from 'react-icons/bi';
+import { logOrigin } from '../constants/constants';
 
 const LogFilter = ({ setState, state, fetchFilteredLogs }) => {
   const handleLevelChange = (e) => {
@@ -91,22 +92,11 @@ const LogFilter = ({ setState, state, fetchFilteredLogs }) => {
   };
 
   const handleOriginChange = (e) => {
-    const { value } = e.target;
-
-    if (value === 'All Logs') {
+    const value = e.target.value;
+    if (logOrigin[value]) {
       setState({
         ...state,
-        logOrigin: 'All Logs',
-      });
-    } else if (value === 'Backend Logs') {
-      setState({
-        ...state,
-        logOrigin: 'Backend Logs',
-      });
-    } else if (value === 'Frontend Logs') {
-      setState({
-        ...state,
-        logOrigin: 'Frontend Logs',
+        logOrigin: value,
       });
     }
   };
@@ -140,44 +130,22 @@ const LogFilter = ({ setState, state, fetchFilteredLogs }) => {
             leaveTo='transform opacity-0 scale-95'>
             <Menu.Items className='absolute right-0 w-50 mt-2 origin-top-right bg-less-dark divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
               <div className='px-1 py-1 '>
-                <Menu.Item>
-                  {({ active }) => (
-                    <button
-                      className={`${
-                        active ? 'bg-violet-500 text-teal' : 'text-teal'
-                      } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                      value='All Logs'
-                      onClick={handleOriginChange}>
-                      All Logs
-                    </button>
-                  )}
-                </Menu.Item>
-
-                <Menu.Item>
-                  {({ active }) => (
-                    <button
-                      className={`${
-                        active ? 'bg-violet-500 text-teal' : 'text-teal'
-                      } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                      value='Backend Logs'
-                      onClick={handleOriginChange}>
-                      Backend Logs
-                    </button>
-                  )}
-                </Menu.Item>
-
-                <Menu.Item>
-                  {({ active }) => (
-                    <button
-                      className={`${
-                        active ? 'bg-violet-500 text-teal' : 'text-teal'
-                      } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
-                      value='Frontend Logs'
-                      onClick={handleOriginChange}>
-                      Frontend Logs
-                    </button>
-                  )}
-                </Menu.Item>
+                {Object.keys(logOrigin).map((value, index) => {
+                  return (
+                    <Menu.Item key={index}>
+                      {({ active }) => (
+                        <button
+                          className={`${
+                            active ? 'bg-violet-500 text-teal' : 'text-teal'
+                          } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                          value={value}
+                          onClick={handleOriginChange}>
+                          {value}
+                        </button>
+                      )}
+                    </Menu.Item>
+                  );
+                })}
               </div>
             </Menu.Items>
           </Transition>

@@ -1,36 +1,31 @@
 const Logs = require('../models/logs');
+const { isBackend } = require('../utils/auxiliaryFunctions');
 
 const filterLogController = {};
 
 filterLogController.filter = async (req, res, next) => {
   console.log('req body', req.body);
   try {
-    const { levels, startSearch, keyword, logOrigin } = req.body.data;
+    let { levels: level, startSearch, keyword, logOrigin } = req.body.data;
 
-    if (levels.length === undefined && !startSearch && !keyword) {
+    if (level.length === undefined && !startSearch && !keyword) {
       return res.redirect('/apiv1/log/getAllLogs');
     }
 
-    const match = {};
-    if (levels.length) {
-      match['level'] = levels;
-    }
+    startSearch = !startSearch
+      ? { $not: { $type: 'null' } }
+      : { $gte: new Date(startSearch) };
 
-    if (startSearch) {
-      const range = new Date(startSearch);
-      match['timestamp'] = { $gte: range };
-    }
+    const match = {
+      timestamp: startSearch,
+      isBackend: isBackend(logOrigin),
+    };
 
+    if (level.length > 0) {
+      match['level'] = level;
+    }
     if (keyword) {
       match['$text'] = { $search: keyword };
-    }
-
-    if (logOrigin) {
-      if (logOrigin === 'Backend Logs') {
-        match['isBackend'] = true;
-      } else if (logOrigin === 'Frontend Logs') {
-        match['isBackend'] = false;
-      }
     }
 
     console.log('match: ', match);
@@ -41,6 +36,7 @@ filterLogController.filter = async (req, res, next) => {
       res.locals.noMatchFound =
         'filterLogController middleware: no match for filtering';
     }
+
     res.locals.filteredLogs = data;
     return next();
   } catch (err) {
