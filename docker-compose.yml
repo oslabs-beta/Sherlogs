@@ -26,6 +26,11 @@ services:
     tty: true
     depends_on:
       - mongodb
+
+  # frontend container
+  frontend:
+    container_name: frontend_container
+
     
 volumes:
   mongodb: {}

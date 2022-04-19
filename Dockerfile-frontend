@@ -1,0 +1,6 @@
+FROM node:16-alpine
+RUN npm install -g vite
+WORKDIR /user/src/app
+COPY package*.json /user/src/app/
+RUN npm install
+EXPOSE 3059
