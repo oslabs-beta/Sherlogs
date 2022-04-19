@@ -1,8 +1,15 @@
 FROM node:16-alpine
-WORKDIR /src/app
+WORKDIR /user/src/app
 COPY . .
 RUN npm ci
 RUN npm run app:build
-COPY dist /src/app
-EXPOSE 3059
-CMD ["npm", "app:dev"]
+COPY dist /user/src/app
+EXPOSE 3300
+CMD ["npm", "run", "app:dev"]
+
+# FROM node:16-alpine
+# WORKDIR /user/src/app
+# COPY . .
+# RUN npm install
+# EXPOSE 3059
+# CMD ["npm", "run", "app:dev"]
