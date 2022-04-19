@@ -30,7 +30,14 @@ services:
   # frontend container
   frontend:
     container_name: frontend_container
-
+    build: .
+    env_file:
+      - ./.env
+    ports:
+      - $FRONTEND_LOCAL_PORT:$FRONTEND_DOCKER_PORT
+    volumes:
+      - .:/src/app
+      - /src/app/node_modules
     
 volumes:
   mongodb: {}

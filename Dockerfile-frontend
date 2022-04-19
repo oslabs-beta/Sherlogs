@@ -1,6 +1,8 @@
 FROM node:16-alpine
-RUN npm install -g vite
-WORKDIR /user/src/app
-COPY package*.json /user/src/app/
-RUN npm install
+WORKDIR /src/app
+COPY . .
+RUN npm ci
+RUN npm run app:build
+COPY dist /src/app
 EXPOSE 3059
+CMD ["npm", "app:dev"]
