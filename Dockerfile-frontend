@@ -3,5 +3,5 @@ WORKDIR /user/src/app
 COPY src /user/src/app 
 COPY ["package.json", "package-lock.json", "./"] /user/src/app/
 RUN npm ci
-CMD ["npm", "run", "app:dev"]
-EXPOSE 3000
+CMD ["npm", "run", "app:dev -- --host"]
+EXPOSE 8495

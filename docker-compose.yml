@@ -32,11 +32,11 @@ services:
   frontend:
     container_name: frontend_container
     image: sherlogs/frontend-prod
-    build: .
+    # build: .
     env_file:
       - ./.env
     ports:
-      - "127.0.0.1:3901:3901"
+      - "127.0.0.1:8495:8495"
     volumes:
       - .:/user/src/app
     depends_on:
