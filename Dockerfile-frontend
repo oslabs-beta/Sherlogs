@@ -1,15 +1,7 @@
 FROM node:16-alpine
 WORKDIR /user/src/app
-COPY . .
+COPY src /user/src/app 
+COPY ["package.json", "package-lock.json", "./"] /user/src/app/
 RUN npm ci
-RUN npm run app:build
-COPY dist /user/src/app
-EXPOSE 3300
 CMD ["npm", "run", "app:dev"]
-
-# FROM node:16-alpine
-# WORKDIR /user/src/app
-# COPY . .
-# RUN npm install
-# EXPOSE 3059
-# CMD ["npm", "run", "app:dev"]
+EXPOSE 3000

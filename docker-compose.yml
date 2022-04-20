@@ -15,7 +15,7 @@ services:
   #node app service
   app:
     container_name: node_container
-    image: sherlogs_app
+    image: sherlogs/app-prod
     build: .
     env_file:
       - ./.env
@@ -24,22 +24,21 @@ services:
     volumes:
       - .:/user/src/app
     stdin_open: true
-    tty: true
+    # tty: true
     depends_on:
       - mongodb
 
   # frontend container
   frontend:
     container_name: frontend_container
-    image: sherlogs/frontend-container
+    image: sherlogs/frontend-prod
     build: .
     env_file:
       - ./.env
     ports:
-      - $FRONTEND_LOCAL_PORT:$FRONTEND_LOCAL_PORT
+      - "127.0.0.1:3901:3901"
     volumes:
       - .:/user/src/app
-      # - /user/src/app/node_modules
     depends_on:
       - mongodb
       - app
