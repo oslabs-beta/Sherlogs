@@ -1,6 +1,6 @@
 version: '3.9'
 services:
-  #mongo db service
+  # mongo db service
   mongodb:
     container_name: db_container
     image: mongo:latest
@@ -16,13 +16,13 @@ services:
   app:
     container_name: node_container
     image: sherlogs/app-prod
-    build: .
     env_file:
       - ./.env
     ports: 
       - $NODE_LOCAL_PORT:$NODE_LOCAL_PORT
     volumes:
-      - .:/user/src/app
+      - ./:/usr/src/app
+      - node_modules:/usr/src/app/node_modules
     stdin_open: true
     # tty: true
     depends_on:
@@ -32,17 +32,22 @@ services:
   frontend:
     container_name: frontend_container
     image: sherlogs/frontend-prod
-    # build: .
     env_file:
       - ./.env
     ports:
-      - "127.0.0.1:8495:8495"
+      - "8495:8495"
     volumes:
-      - .:/user/src/app
+      - ./:/usr/src/app
+      - node_modules_frontend:/usr/src/app/node_modules
     depends_on:
       - mongodb
       - app
     
 volumes:
   mongodb: {}
+  node_modules: 
+  node_modules_frontend:
+
+  
+
 
