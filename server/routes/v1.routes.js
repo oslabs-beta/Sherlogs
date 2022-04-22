@@ -6,7 +6,7 @@ const filterLogController = require('../controllers/filterLogController');
 Router.post('/log/store', logController.storeLog, (req, res, next) => {
   const { logStored } = res.locals;
 
-  return res.status(201).json({
+  return res.status(200).json({
     status: true,
     log: logStored,
     message: 'Successfully stored log into DB',

@@ -15,7 +15,7 @@ services:
   #node app service
   app:
     container_name: node_container
-    image: sherlogs/app-prod
+    image: sherlogs/app-prod:latest
     env_file:
       - ./.env
     ports: 
@@ -31,11 +31,11 @@ services:
   # frontend container
   frontend:
     container_name: frontend_container
-    image: sherlogs/frontend-prod
+    image: sherlogs/frontend-prod:latest
     env_file:
       - ./.env
     ports:
-      - "8495:8495"
+      - $FRONTEND_DOCKER_PORT:$FRONTEND_DOCKER_PORT
     volumes:
       - ./:/usr/src/app
       - node_modules_frontend:/usr/src/app/node_modules

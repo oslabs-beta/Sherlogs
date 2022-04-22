@@ -6,6 +6,7 @@ const logController = {};
 
 logController.storeLog = async (req, res, next) => {
   const body = checkLogBody(req.body);
+  console.log('bodyyy', body);
 
   try {
     const data = await Logs.create({
