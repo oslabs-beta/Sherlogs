@@ -22,16 +22,6 @@ logController.storeLog = async (req, res, next) => {
 
 logController.getAllLogs = async (req, res, next) => {
   try {
-    //TODO: refactor below codes for one specific user log
-    // const { user } = req.body;
-    // if (!user) {
-    //   const userError = {
-    //     log: 'getAllLogs middleware: no user found',
-    //     status: 401,
-    //     message: { err: 'An error occurred' },
-    //   };
-    //   return next(userError);
-    // }
     const data = await Logs.find({});
     if (!data) {
       const dataError = {
