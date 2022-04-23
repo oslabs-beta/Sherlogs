@@ -1,17 +1,15 @@
 import React, { Fragment } from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { BiChevronDown } from 'react-icons/bi';
+import { logOrigin } from '../constants/constants';
 
 const LogFilter = ({ setState, state, fetchFilteredLogs }) => {
   const handleLevelChange = (e) => {
     const { name } = e.target;
 
     const newLevel = (currentLevel, levelOption) => {
-      //TODO: remove comments and console.log when out of development process
-
       //adding the first element
       if (currentLevel.length === undefined) {
-        console.log('adding 1st value', [levelOption]);
         return [levelOption];
       }
 
@@ -90,11 +88,67 @@ const LogFilter = ({ setState, state, fetchFilteredLogs }) => {
     });
   };
 
+  const handleOriginChange = (e) => {
+    const value = e.target.value;
+    if (logOrigin[value]) {
+      setState({
+        ...state,
+        logOrigin: value,
+      });
+    }
+  };
+
   return (
     <div className=' bg-less-dark mr-3 ml-3 mt-5 pr-2 pl-2 rounded flex items-center justify-between shadow-md shadow-extra-dark'>
       <h3 className='mr-5 text-md font-medium font-semibold text-teal'>
         Filter logs
       </h3>
+
+      <div>
+        <Menu
+          as='div'
+          className='relative inline-block text-left py-2.5 px-2.5 ml-2'>
+          <div>
+            <Menu.Button className='inline-flex justify-center w-full px-4 py-2 text-md font-medium text-teal bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75'>
+              {state.logOrigin ? state.logOrigin : 'Log Origin'}
+              <BiChevronDown
+                className='w-5 h-5 ml-2 -mr-1 text-violet-200 hover:text-violet-100'
+                aria-hidden='true'
+              />
+            </Menu.Button>
+          </div>
+          <Transition
+            as={Fragment}
+            enter='transition ease-out duration-100'
+            enterFrom='transform opacity-0 scale-95'
+            enterTo='transform opacity-100 scale-100'
+            leave='transition ease-in duration-75'
+            leaveFrom='transform opacity-100 scale-100'
+            leaveTo='transform opacity-0 scale-95'>
+            <Menu.Items className='absolute right-0 w-50 mt-2 origin-top-right bg-less-dark divide-y divide-gray-100 rounded-md shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none'>
+              <div className='px-1 py-1 '>
+                {Object.keys(logOrigin).map((value, index) => {
+                  return (
+                    <Menu.Item key={index}>
+                      {({ active }) => (
+                        <button
+                          className={`${
+                            active ? 'bg-violet-500 text-teal' : 'text-teal'
+                          } group flex rounded-md items-center w-full px-2 py-2 text-sm`}
+                          value={value}
+                          onClick={handleOriginChange}>
+                          {value}
+                        </button>
+                      )}
+                    </Menu.Item>
+                  );
+                })}
+              </div>
+            </Menu.Items>
+          </Transition>
+        </Menu>
+      </div>
+
       <div>
         <Menu
           as='div'

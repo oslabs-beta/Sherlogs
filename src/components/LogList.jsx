@@ -13,6 +13,7 @@ function LogList() {
     keyword: '',
     queryTime: new Date(),
     startSearch: '',
+    logOrigin: '',
   });
 
   const getAllLogs = async () => {
