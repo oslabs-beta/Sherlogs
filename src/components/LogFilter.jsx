@@ -8,11 +8,8 @@ const LogFilter = ({ setState, state, fetchFilteredLogs }) => {
     const { name } = e.target;
 
     const newLevel = (currentLevel, levelOption) => {
-      //TODO: remove comments and console.log when out of development process
-
       //adding the first element
       if (currentLevel.length === undefined) {
-        console.log('adding 1st value', [levelOption]);
         return [levelOption];
       }
 

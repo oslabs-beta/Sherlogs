@@ -1,7 +1,7 @@
 const logOrigin = {
-  all: true,
-  backend: true,
-  frontend: true,
+  All: true,
+  Backend: true,
+  Frontend: true,
 };
 
 export { logOrigin };

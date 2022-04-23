@@ -4,7 +4,6 @@ const { isBackend } = require('../utils/auxiliaryFunctions');
 const filterLogController = {};
 
 filterLogController.filter = async (req, res, next) => {
-  console.log('req body', req.body);
   try {
     let { levels: level, startSearch, keyword, logOrigin } = req.body.data;
 
@@ -27,8 +26,6 @@ filterLogController.filter = async (req, res, next) => {
     if (keyword) {
       match['$text'] = { $search: keyword };
     }
-
-    console.log('match: ', match);
 
     const data = await Logs.find(match);
 

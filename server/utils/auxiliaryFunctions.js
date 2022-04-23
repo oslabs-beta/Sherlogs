@@ -3,9 +3,9 @@ const checkLogBody = (body) => {
 };
 
 const isBackend = (origin) => {
-  if (origin === 'backend') return true;
-  if (origin === 'frontend') return false;
-  if (origin === 'all' || origin === '') return { $not: { $type: 'null' } };
+  if (origin === 'Backend') return true;
+  if (origin === 'Frontend') return false;
+  if (origin === 'All' || origin === '') return { $not: { $type: 'null' } };
 };
 
 module.exports = { checkLogBody, isBackend };
