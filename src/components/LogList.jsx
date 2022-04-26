@@ -3,6 +3,7 @@ import axios from 'axios';
 import Log from './Log.jsx';
 import Searchbar from './Searchbar.jsx';
 import LogFilter from './LogFilter.jsx';
+import Pagination from './Pagination.jsx';
 
 function LogList() {
   const [logs, setLogs] = useState([]);
@@ -58,8 +59,6 @@ function LogList() {
     } else return false;
   });
 
-  const logList = filtered.map((log) => <Log key={log._id} log={log} />);
-
   return (
     <div className='inline-flex flex-col items-center bg-slate w-full h-max pb-5'>
       <LogFilter
@@ -68,9 +67,15 @@ function LogList() {
         fetchFilteredLogs={fetchFilteredLogs}
       />
       <Searchbar setQuery={setQuery} />
-      <div className='w-11/12 border-2 border-ltGray bg-white'>
-        {logList}
-        {logList.length === 0 && (
+      <div className='w-11/12'>
+        {filtered.length > 0 ? (
+          <Pagination
+            data={filtered}
+            RenderComponent={Log}
+            pageLimit={5}
+            dataLimit={20}
+          />
+        ) : (
           <p className='text-gray'>No results found</p>
         )}
       </div>
