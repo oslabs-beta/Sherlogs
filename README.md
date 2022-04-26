@@ -41,5 +41,9 @@ You will need to creare and set .env file variables both within the Sherlogs app
 
 ### Stop containers if they are running in background
 
-`docker compose down` 
+`docker compose stop` 
+
+### Stop and remove containers 
+
+`docker compose down`
 
