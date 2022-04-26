@@ -1,13 +1,8 @@
 import React, { useState } from 'react';
 
-//data: array of all data that needs to be displayed
-//renerComp: component that shows the data (log.jsx)
-//pageLim: #of pages in pagination (p. 1, 2, 3, )
-//dataLim: # of posts per page
-
 function Pagination({data, RenderComponent, pageLimit, dataLimit}) {
-  const [pages] = useState(Math.round(data.length / dataLimit));  //total # of pages
-  const [currentPage, setCurrentPage] = useState(1);  //current page the user is viewing
+  const [pages] = useState(Math.round(data.length / dataLimit));
+  const [currentPage, setCurrentPage] = useState(1);
 
   const goToNextPage = () => {
     setCurrentPage(page => page + 1);
@@ -38,9 +33,8 @@ function Pagination({data, RenderComponent, pageLimit, dataLimit}) {
       {/* pagination menu */}
       <div className='pagination'>
         <div className='flex justify-end'>
-          <p>Showing results {currentPage * dataLimit - dataLimit + 1} to {currentPage * dataLimit}</p>
+          <p>Showing results {currentPage * dataLimit - dataLimit + 1} to {data.length}</p>
           
-          {/* previous button */}
           {currentPage === 1 ? '' : (
             <button 
               onClick={goToPrevPage}
@@ -63,7 +57,6 @@ function Pagination({data, RenderComponent, pageLimit, dataLimit}) {
           </button>
         ))} */}
 
-          {/* next button */}
           {currentPage === pages ? '' : (
             <button
               onClick={goToNextPage}
@@ -77,8 +70,6 @@ function Pagination({data, RenderComponent, pageLimit, dataLimit}) {
 
         </div>
       </div>
-
-        
       
       <div className='dataContainer border-2 border-ltGray bg-white'>
         {getPaginatedData().map((d, idx) => (

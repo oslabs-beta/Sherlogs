@@ -66,7 +66,8 @@ function LogList() {
         setState={setState}
         fetchFilteredLogs={fetchFilteredLogs}
       />
-      <Searchbar setQuery={setQuery} />
+      {filtered.length > 0 &&<Searchbar setQuery={setQuery} />}
+
       <div className='w-11/12'>
         {filtered.length > 0 ? (
           <Pagination
@@ -76,7 +77,7 @@ function LogList() {
             dataLimit={20}
           />
         ) : (
-          <p className='text-gray'>No results found</p>
+          <p className='text-gray text-xl m-4 text-center'>No results found</p>
         )}
       </div>
     </div>
