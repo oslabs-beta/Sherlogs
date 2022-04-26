@@ -9,7 +9,7 @@ const Searchbar = ({ setQuery }) => {
       <input
         placeholder='Search logs'
         type='text'
-        className='w-full bg-less-dark h-9 rounded-md placeholder:text-lighter-blue shadow-md shadow-extra-dark placeholder:pl-3'
+        className='w-full bg-white h-9  rounded-md shadow shadow-dark placeholder:text-gray placeholder:pl-3'
         onChange={onChange}></input>
     </div>
   );
