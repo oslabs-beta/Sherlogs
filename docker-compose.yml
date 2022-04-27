@@ -23,8 +23,6 @@ services:
     volumes:
       - ./:/usr/src/app
       - node_modules:/usr/src/app/node_modules
-    stdin_open: true
-    # tty: true
     depends_on:
       - mongodb
 
