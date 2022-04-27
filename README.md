@@ -23,10 +23,6 @@ You will need to create and set .env file variables both within the Sherlogs app
 
 `npm install`
 
-### Create docker images
-
-`docker compose build`
-
 ### Start application and run containers in foreground
 
 `docker compose up`
