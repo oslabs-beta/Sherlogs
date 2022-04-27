@@ -8,7 +8,7 @@ services:
       - ./.env
     restart: always
     ports:
-      - $MONGODB_DOCKER_PORT:$MONGODB_DOCKER_PORT
+      - 27017:27017
     volumes:
       - ./mongodb:/data/db
 
@@ -19,7 +19,7 @@ services:
     env_file:
       - ./.env
     ports: 
-      - $NODE_DOCKER_PORT:$NODE_DOCKER_PORT
+      - 8080:8080
     volumes:
       - ./:/usr/src/app
       - node_modules:/usr/src/app/node_modules
@@ -35,7 +35,7 @@ services:
     env_file:
       - ./.env
     ports:
-      - $FRONTEND_DOCKER_PORT:$FRONTEND_DOCKER_PORT
+      - 8459:8459
     volumes:
       - ./:/usr/src/app
       - node_modules_frontend:/usr/src/app/node_modules
