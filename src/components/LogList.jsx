@@ -66,7 +66,7 @@ function LogList() {
         setState={setState}
         fetchFilteredLogs={fetchFilteredLogs}
       />
-      {filtered.length > 0 &&<Searchbar setQuery={setQuery} />}
+      <Searchbar setQuery={setQuery} />
 
       <div className='w-11/12'>
         {filtered.length > 0 ? (

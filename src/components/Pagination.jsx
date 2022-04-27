@@ -33,7 +33,7 @@ function Pagination({data, RenderComponent, pageLimit, dataLimit}) {
       {/* pagination menu */}
       <div className='pagination'>
         <div className='flex justify-end'>
-          <p>Showing results {currentPage * dataLimit - dataLimit + 1} to {data.length}</p>
+          <p>Showing results {currentPage * dataLimit - dataLimit + 1} to {currentPage * dataLimit}</p>
           
           {currentPage === 1 ? '' : (
             <button 
