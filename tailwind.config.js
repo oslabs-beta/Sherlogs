@@ -10,8 +10,8 @@ module.exports = {
 
       main: '#5A4AE3',
       secondary: '#4AD3E3',
-      //red: #e35a4a
-      //yellowish: #d3e34a
+      red: '#E35A4A',
+      yellow: '#FDDA0D',
       darker: '#483BB6',
       main_ten: '#6B5CE6',
       main_twenty: '#8C80EB',
