@@ -27,24 +27,24 @@ services:
       - mongodb
 
   # frontend container
-  frontend:
-    container_name: frontend_container
-    image: sherlogs/frontend-prod:latest
-    env_file:
-      - ./.env
-    ports:
-      - 8495:8495
-    volumes:
-      - ./:/usr/src/app
-      - node_modules_frontend:/usr/src/app/node_modules
-    depends_on:
-      - mongodb
-      - app
+  # frontend:
+  #   container_name: frontend_container
+  #   image: sherlogs/frontend-prod:latest
+  #   env_file:
+  #     - ./.env
+  #   ports:
+  #     - 8495:8495
+  #   volumes:
+  #     - ./:/usr/src/app
+  #     - node_modules_frontend:/usr/src/app/node_modules
+  #   depends_on:
+  #     - mongodb
+  #     - app
     
 volumes:
   mongodb: {}
   node_modules: 
-  node_modules_frontend:
+  # node_modules_frontend:
   
 
 

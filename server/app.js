@@ -19,6 +19,7 @@ async function createApp(config) {
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(cors());
 
+  app.use(express.static(path.join(__dirname, '../dist')));
   app.use('/apiv1', apiV1Router);
 
   app.use('*', (req, res) => {
