@@ -1,0 +1,50 @@
+version: '3.9'
+services:
+  # mongo db service
+  mongodb:
+    container_name: db_container
+    image: mongo:latest
+    env_file:
+      - ./.env
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ./mongodb:/data/db
+
+  #node app service
+  app:
+    container_name: node_container
+    image: sherlogs/app-prod:latest
+    env_file:
+      - ./.env
+    ports: 
+      - 8080:8080
+    volumes:
+      - ./:/usr/src/app
+      - node_modules:/usr/src/app/node_modules
+    depends_on:
+      - mongodb
+
+  # frontend container
+  # frontend:
+  #   container_name: frontend_container
+  #   image: sherlogs/frontend-prod:latest
+  #   env_file:
+  #     - ./.env
+  #   ports:
+  #     - 8495:8495
+  #   volumes:
+  #     - ./:/usr/src/app
+  #     - node_modules_frontend:/usr/src/app/node_modules
+  #   depends_on:
+  #     - mongodb
+  #     - app
+    
+volumes:
+  mongodb: {}
+  node_modules: 
+  # node_modules_frontend:
+  
+
+
