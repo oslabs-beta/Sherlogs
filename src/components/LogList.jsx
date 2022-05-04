@@ -54,7 +54,7 @@ function LogList() {
   const filtered = logs.filter((log) => {
     if (query === '') {
       return log;
-    } else if (log.message.toLowerCase().includes(query.toLowerCase())) {
+    } else if ((log.message && query.length > 0) && log.message.toLowerCase().includes(query.toLowerCase())) {
       return log;
     } else return false;
   });
