@@ -25,7 +25,7 @@ const Navbar = () => {
         </div>
       </div>
       <div className={open ? 'hidden px-4 lg:block' : 'block px-4 lg:block'}>
-        <a
+        {/* <a
           href='#'
           style={{ whiteSpace: 'nowrap', fontSize: '18px' }}
           className='text-bright-turquoise font-semibold tracking-tight duration-300 block mr-3 ml-3 mt-3 pr-2 pl-2 lg:inline-block rounded hover:border-b-4 border-bright-turquoise pb-1 pt-1'>
@@ -36,7 +36,7 @@ const Navbar = () => {
           style={{ whiteSpace: 'nowrap', fontSize: '18px' }}
           className='text-bright-turquoise font-semibold tracking-tight duration-300 block mr-3 ml-3 mt-3 pl-2 pr-2 lg:inline-block rounded hover:border-b-4 border-bright-turquoise pb-1 pt-1'>
           Account
-        </a>
+        </a> */}
       </div>
     </nav>
   );
