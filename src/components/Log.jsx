@@ -3,7 +3,7 @@ import React from 'react';
 function Log({ log }) {
 
   let levelColor = 'bg-secondary';
-  if(log.level === 'error') levelColor = 'bg-red';
+  if(log.level === 'error' || log.level === 'crit' || log.level === 'alert' || log.level === 'emerg') levelColor = 'bg-red';
   if(log.level === 'warn') levelColor = 'bg-yellow';
   if(log.level === 'debug') levelColor = 'main';
 
