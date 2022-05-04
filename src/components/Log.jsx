@@ -2,9 +2,7 @@ import React from 'react';
 
 function Log({ log }) {
   return (
-    <div
-      key={log._id}
-      className='grid grid-cols-10 border-b-2 border-ltGray'>
+    <div key={log._id} className='grid grid-cols-10 border-b-2 border-ltGray'>
       <p className='shrink-0 text-gray col-span-2 pl-2 text-sm'>
         {log.timestamp}
       </p>

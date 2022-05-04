@@ -19,7 +19,7 @@ function LogList() {
   const getAllLogs = async () => {
     try {
       const response = await axios.get(
-        'http://localhost:3300/apiv1/log/getAllLogs'
+        'http://localhost:8080/apiv1/log/getAllLogs'
       );
       const data = response?.data;
       if (data?.status) {
@@ -33,7 +33,7 @@ function LogList() {
   const fetchFilteredLogs = async () => {
     try {
       const response = await axios.post(
-        'http://localhost:3300/apiv1/log/filter',
+        'http://localhost:8080/apiv1/log/filter',
         {
           data: state,
         }
@@ -70,9 +70,7 @@ function LogList() {
       <Searchbar setQuery={setQuery} />
       <div className='w-11/12 border-2 border-ltGray bg-white'>
         {logList}
-        {logList.length === 0 && (
-          <p className='text-gray'>No results found</p>
-        )}
+        {logList.length === 0 && <p className='text-gray'>No results found</p>}
       </div>
     </div>
   );
