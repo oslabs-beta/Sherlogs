@@ -20,28 +20,9 @@ If you are using macOS or Windows, Docker Compose is included as part of the Doc
 You will need to set the `MONGODB_URL` variable in your .env file to `mongodb://mongodb:27017/sherlogs`. If you alternatively want to use the Sherlogs application locally without Docker, you will need to create your own database and set the `MONGODB_URL` to your personal database connection string. 
 
 Lastly, you will need to set the `PORT` variable in the .env file to match the port that the node_container is running on, `8080`. 
-
-### Installation
-
-`npm install`
-
-### Start application and run containers in foreground
+## Start application and run containers in foreground directly from DockerHub images
 
 `docker compose up`
 
-### Start application and run containers detached in background
 
-`docker compose up -d`
-
-### Stop containers if they are running in foreground
-
-`CTRL+C`
-
-### Stop containers if they are running in background
-
-`docker compose stop` 
-
-### Stop and remove containers 
-
-`docker compose down`
 
