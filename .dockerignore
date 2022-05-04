@@ -1,5 +1,7 @@
 node_modules
-Dockerfile 
+node_modules/
+dist/
+Dockerfile
 .dockerignore
 docker-compose.yml
 .env

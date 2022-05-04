@@ -20,7 +20,7 @@ function LogList() {
   const getAllLogs = async () => {
     try {
       const response = await axios.get(
-        'http://localhost:3300/apiv1/log/getAllLogs'
+        'http://localhost:8080/apiv1/log/getAllLogs'
       );
       const data = response?.data;
       if (data?.status) {
@@ -34,7 +34,7 @@ function LogList() {
   const fetchFilteredLogs = async () => {
     try {
       const response = await axios.post(
-        'http://localhost:3300/apiv1/log/filter',
+        'http://localhost:8080/apiv1/log/filter',
         {
           data: state,
         }

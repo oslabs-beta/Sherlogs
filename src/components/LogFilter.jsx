@@ -8,15 +8,12 @@ const LogFilter = ({ setState, state, fetchFilteredLogs }) => {
     const { name } = e.target;
 
     const newLevel = (currentLevel, levelOption) => {
-      //adding the first element
       if (currentLevel.length === undefined) {
         return [levelOption];
       }
 
       const result = [...currentLevel];
 
-      //check to see if level selected already in the array
-      //if yes then remove them,
       for (let i = 0; i < result.length; i++) {
         if (result[i] === levelOption) {
           result.splice(i, 1);
@@ -24,9 +21,6 @@ const LogFilter = ({ setState, state, fetchFilteredLogs }) => {
         }
       }
 
-      //if for loop doesn't terminate the func
-      //meaning the selected option is not inside the array
-      //so return current level with option added.
       return [...result, name];
     };
 
