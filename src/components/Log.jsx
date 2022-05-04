@@ -1,11 +1,16 @@
 import React from 'react';
 
 function Log({ log }) {
-
   let levelColor = 'bg-secondary';
-  if(log.level === 'error' || log.level === 'crit' || log.level === 'alert' || log.level === 'emerg') levelColor = 'bg-red';
-  if(log.level === 'warn') levelColor = 'bg-yellow';
-  if(log.level === 'debug') levelColor = 'main';
+  if (
+    log.level === 'error' ||
+    log.level === 'crit' ||
+    log.level === 'alert' ||
+    log.level === 'emerg'
+  )
+    levelColor = 'bg-red';
+  if (log.level === 'warn') levelColor = 'bg-yellow';
+  if (log.level === 'debug') levelColor = 'main';
 
   return (
     <div key={log._id} className='grid grid-cols-10 border-b-2 border-ltGray'>
@@ -13,7 +18,8 @@ function Log({ log }) {
         {log.timestamp}
       </p>
       <div className='flex justify-center items-start'>
-        <p className={`${levelColor} text-white inline-block px-3 rounded-full text-sm my-1`}>
+        <p
+          className={`${levelColor} text-white inline-block px-3 rounded-full text-sm my-1`}>
           {log.level}
         </p>
       </div>
